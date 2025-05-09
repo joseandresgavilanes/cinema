@@ -1,8 +1,8 @@
-package pt.ipleiria.estg.dei.ei.esoft;
+package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
 import javax.swing.*;
 
-public class Log_in extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
     private JPanel mainPanel;
     private JTextField passwordTextField;
     private JTextField userTextField;
@@ -10,7 +10,7 @@ public class Log_in extends javax.swing.JFrame {
     private JLabel imgPassword;
     private JButton loginButton;
 
-    public Log_in() {
+    public Login() {
         setContentPane(mainPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -19,7 +19,7 @@ public class Log_in extends javax.swing.JFrame {
     }
 
     public static void main(String[] args) {
-        new Log_in().setVisible(true);
+        new Login().setVisible(true);
    }
 
 

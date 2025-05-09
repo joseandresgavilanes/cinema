@@ -1,8 +1,8 @@
-package pt.ipleiria.estg.dei.ei.esoft;
+package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
 import javax.swing.*;
 
-public class Admin extends JFrame {
+public class CreateMovieForm extends JFrame {
     private JPanel adminPanel;
     private JTextField tituloTextField;
     private JTextField duracionTextField;
@@ -12,7 +12,7 @@ public class Admin extends JFrame {
     private JButton cancelButton;
     private JButton saveButton;
 
-    public Admin() {
+    public CreateMovieForm() {
         setContentPane(adminPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -21,7 +21,7 @@ public class Admin extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Admin().setVisible(true);
+        new CreateMovieForm().setVisible(true);
 
     }
 

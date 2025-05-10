@@ -13,4 +13,6 @@ public class Receipt extends JFrame {
     private JLabel receiptAutoIncrement;
     private JLabel dateActual;
     private JPanel countingSellings;
+
+    //draft
 }

@@ -9,4 +9,6 @@ public class ReceiptDataAdded {
     private JLabel description;
     private JLabel singlePrice;
     private JLabel total;
+
+    //draft
 }

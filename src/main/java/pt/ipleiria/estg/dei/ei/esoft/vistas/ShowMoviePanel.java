@@ -7,15 +7,15 @@ public class ShowMoviePanel extends JPanel {
     private JPanel MoviePanel;
     private JComboBox comboBox1;
     private JButton BuyButton;
-    private JLabel MovieTitle;
-    private JLabel Description;
+    private JLabel lblTitle;
+    private JLabel lblDescription;
 
     public void setTitulo(String titulo) {
-        MovieTitle.setText(titulo);
+        lblTitle.setText(titulo);
     }
 
     public void setDescripcion(String descripcion) {
-        Description.setText(descripcion);
+        lblDescription.setText(descripcion);
     }
 
     public void setHorarios(List<String> horarios) {
@@ -28,8 +28,4 @@ public class ShowMoviePanel extends JPanel {
         add(MoviePanel);
     }
 
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

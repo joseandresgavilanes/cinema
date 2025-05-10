@@ -1,6 +1,7 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Login extends javax.swing.JFrame {
     private JPanel mainPanel;

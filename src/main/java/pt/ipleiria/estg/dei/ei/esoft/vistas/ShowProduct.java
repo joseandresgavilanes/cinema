@@ -30,6 +30,8 @@ public class ShowProduct extends JFrame {
             panel.setName(p.getName());
             panel.setDescription(p.getDescription());
             panel.setPrice(p.getPrice());
+            panel.setOpaque(false);
+
 
             ProductContainer.add(panel);
         }

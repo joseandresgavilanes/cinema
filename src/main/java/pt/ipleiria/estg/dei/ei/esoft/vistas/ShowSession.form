@@ -20,12 +20,16 @@
           <text value="Session Panel"/>
         </properties>
       </component>
-      <scrollpane id="a478">
+      <scrollpane id="a478" binding="ScrollPanel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-1"/>
+          <background color="-9539986"/>
+          <enabled value="true"/>
+          <opaque value="false"/>
+          <requestFocusEnabled value="true"/>
+          <verifyInputWhenFocusTarget value="true"/>
         </properties>
         <border type="none"/>
         <children>
@@ -33,7 +37,9 @@
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints/>
             <properties>
-              <background color="-1"/>
+              <background color="-9539986"/>
+              <enabled value="true"/>
+              <opaque value="true"/>
             </properties>
             <border type="none">
               <color color="-16777216"/>

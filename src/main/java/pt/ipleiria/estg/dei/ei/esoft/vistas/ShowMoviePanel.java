@@ -28,4 +28,7 @@ public class ShowMoviePanel extends JPanel {
         add(MoviePanel);
     }
 
+    public JPanel getMoviePanel() {
+        return MoviePanel;
+    }
 }

@@ -4,6 +4,7 @@ import pt.ipleiria.estg.dei.ei.esoft.Session;
 import pt.ipleiria.estg.dei.ei.esoft.Movie;
 
 import javax.swing.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public class ShowSession extends JFrame {
     private JPanel SessionPanel;
     private JPanel MovieContainer;
+    private JScrollPane ScrollPanel;
 
     public static void main(String[] args) {
         new ShowSession().setVisible(true);
@@ -23,6 +25,11 @@ public class ShowSession extends JFrame {
 
         MovieContainer.setLayout(new BoxLayout(MovieContainer, BoxLayout.Y_AXIS));
 
+        System.out.println(MovieContainer.getSize());
+
+
+
+
         List<Session> funciones = crearFuncionesDePrueba();
 
         for (Session f : funciones) {
@@ -30,6 +37,11 @@ public class ShowSession extends JFrame {
             panel.setTitulo(f.getMovie().getTitulo());
             panel.setDescripcion(f.getMovie().getDescripcion());
             panel.setHorarios(f.getMovie().getHorarios());
+            panel.setOpaque(false);
+//            panel.getMoviePanel().setOpaque(false);
+
+            panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
 
             MovieContainer.add(panel);
         }

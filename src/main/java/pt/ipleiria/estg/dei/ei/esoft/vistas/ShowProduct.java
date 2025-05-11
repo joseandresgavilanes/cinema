@@ -43,6 +43,21 @@ public class ShowProduct extends JFrame {
         productos.add(new Product("Combo 1", "Palomitas + Bebida", "Combo", 5.50));
         productos.add(new Product("Refresco", "Coca-Cola 500ml", "Bebida", 2.00));
         productos.add(new Product("Nachos", "Con queso", "Snack", 3.75));
+        productos.add(new Product("Comssssssssssssssssssssbo 1", "Palomitas + Bebida", "Combo", 5.50));
+        productos.add(new Product("Refresco", "Coca-Cola 500ml", "Bebida", 2.00));
+        productos.add(new Product("Nachos", "Con queso", "Snack", 3.75));
+        productos.add(new Product("Combo 1", "Palomitas + Bebida", "Combo", 5.50));
+        productos.add(new Product("Refresco", "Coca-Cola 500ml", "Bebida", 2.00));
+        productos.add(new Product("Nachos", "Con queso", "Snack", 3.75));
+        productos.add(new Product("Combo 1", "Palomitas + Bebida", "Combo", 5.50));
+        productos.add(new Product("Refresco", "Coca-Cola 500ml", "Bebida", 2.00));
+        productos.add(new Product("Nachos", "Con queso", "Snack", 3.75));
+        productos.add(new Product("Combo 1", "Palomitas + Bebida", "Combo", 5.50));
+        productos.add(new Product("Refresco", "Coca-Cola 500ml", "Bebida", 2.00));
+        productos.add(new Product("Nachos", "Con queso", "Snack", 3.75));
+        productos.add(new Product("Combo 1", "Palomitas + Bebida", "Combo", 5.50));
+        productos.add(new Product("Refresco", "Coca-Cola 500ml", "Bebida", 2.00));
+        productos.add(new Product("Nachos", "Con queso", "Snack", 3.75));
         return productos;
     }
 }

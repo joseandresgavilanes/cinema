@@ -42,7 +42,7 @@ public class ShowSession extends JFrame {
         List<Session> funciones = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
             String titulo = "Movie " + i;
-            String descripcion = "Info movie " + i;
+            String descripcion = "Info  movie " + i;
             List<String> horarios = Arrays.asList("12:00", "15:00", "18:00");
             Movie peli = new Movie(titulo, descripcion, horarios);
             funciones.add(new Session(peli));

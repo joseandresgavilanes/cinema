@@ -18,7 +18,7 @@ public class BuyTickets extends JFrame {
     private JLabel priceTag;
     private JLabel price;
     private JLabel payment;
-    private JComboBox comboBox1;
+    private JComboBox paymentMethodOptions;
     private JLabel clientName;
     private JFormattedTextField clientNameInput;
     private JLabel dateSession;

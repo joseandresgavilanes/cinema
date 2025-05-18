@@ -12,12 +12,10 @@ public class BuyProduct extends JFrame {
     private JPanel products;
     private JLabel priceLabel;
     private JLabel priceCummulative;
-    private JButton buyNow;
     private JButton backBuyTicket;
 
     public BuyProduct() {
         Dimension buttonSize = new Dimension(120, 30);
-        buyNow.setPreferredSize(buttonSize);
         backBuyTicket.setPreferredSize(buttonSize);
     }
 

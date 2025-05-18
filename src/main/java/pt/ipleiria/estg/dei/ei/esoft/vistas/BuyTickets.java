@@ -40,7 +40,21 @@ public class BuyTickets extends JFrame {
         initializeSeatSelector();
 
         setVisible(true);
+
+        addProduct.addActionListener(e -> {
+            BuyProduct buyProduct = new BuyProduct();
+
+            JFrame productFrame = new JFrame("Buy Product");
+            productFrame.setContentPane(buyProduct.getPanel());
+            productFrame.pack();
+            productFrame.setLocationRelativeTo(null);
+            productFrame.setVisible(true);
+        });
+
+
     }
+
+
 
     private void initializeSeatSelector() {
         seatSelection.setLayout(new GridLayout(ROWS, COLUMNS, 2, 2));

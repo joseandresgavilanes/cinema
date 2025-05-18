@@ -89,19 +89,9 @@
           <text value="price"/>
         </properties>
       </component>
-      <component id="1fbf6" class="javax.swing.JButton" binding="buyNow">
-        <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="234" height="34"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Buy now"/>
-        </properties>
-      </component>
       <component id="c0c2e" class="javax.swing.JButton" binding="backBuyTicket">
         <constraints>
-          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Back to Buy Ticket"/>

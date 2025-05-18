@@ -17,6 +17,14 @@ public class BuyProduct extends JFrame {
     public BuyProduct() {
         Dimension buttonSize = new Dimension(120, 30);
         backBuyTicket.setPreferredSize(buttonSize);
+
+        backBuyTicket.addActionListener(e -> {
+            Window window = SwingUtilities.getWindowAncestor(panel1);
+            if (window != null) {
+                window.dispose();
+            }
+            new BuyTickets();
+        });
     }
 
     public JPanel getPanel() {
@@ -31,19 +39,16 @@ public class BuyProduct extends JFrame {
             e.printStackTrace();
         }
 
-        // Create the frame
         JFrame frame = new JFrame("Buy Product");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Create the BuyProduct instance
         BuyProduct buyProduct = new BuyProduct();
 
-        // Add the main panel to the frame
         frame.setContentPane(buyProduct.getPanel());
 
-        frame.pack(); // Adjusts frame size to fit components
-        frame.setLocationRelativeTo(null); // Centers the window
-        frame.setVisible(true); // Show the window
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }
 

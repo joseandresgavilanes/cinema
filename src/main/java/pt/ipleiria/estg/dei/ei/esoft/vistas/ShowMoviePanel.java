@@ -26,6 +26,11 @@ public class ShowMoviePanel extends JPanel {
     }
     public ShowMoviePanel() {
         add(MoviePanel);
+
+        BuyButton.addActionListener(e -> {
+            BuyTickets ventana = new BuyTickets();
+            ventana.setVisible(true);
+        });;
     }
 
     public JPanel getMoviePanel() {

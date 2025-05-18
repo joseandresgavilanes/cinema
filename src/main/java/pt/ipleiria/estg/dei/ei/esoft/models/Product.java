@@ -1,6 +1,7 @@
-package pt.ipleiria.estg.dei.ei.esoft;
+package pt.ipleiria.estg.dei.ei.esoft.models;
 
 public class Product {
+    private int productId;
     private String name;
     private String description;
     private String category; // combo, bebida, snack

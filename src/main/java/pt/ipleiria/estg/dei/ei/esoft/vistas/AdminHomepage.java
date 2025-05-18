@@ -29,7 +29,7 @@ public class AdminHomepage extends JFrame{
 
 
     public static void main(String[] args) {
-        new CreateMovieForm().setVisible(true);
+        new AdminHomepage().setVisible(true);
 
     }
 }

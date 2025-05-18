@@ -1,12 +1,9 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
-import pt.ipleiria.estg.dei.ei.esoft.Session;
-import pt.ipleiria.estg.dei.ei.esoft.Movie;
-
+import pt.ipleiria.estg.dei.ei.esoft.DataStore;
+import pt.ipleiria.estg.dei.ei.esoft.DataStore;
+import pt.ipleiria.estg.dei.ei.esoft.models.Session;
 import javax.swing.*;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ShowSession extends JFrame {
@@ -15,7 +12,7 @@ public class ShowSession extends JFrame {
     private JScrollPane ScrollPanel;
 
     public static void main(String[] args) {
-        new ShowSession().setVisible(true);
+        SwingUtilities.invokeLater(() -> new ShowSession().setVisible(true));
     }
 
     public ShowSession() {
@@ -25,41 +22,25 @@ public class ShowSession extends JFrame {
 
         MovieContainer.setLayout(new BoxLayout(MovieContainer, BoxLayout.Y_AXIS));
 
-        System.out.println(MovieContainer.getSize());
+        // 1) Obtengo las sesiones del singleton
+        List<Session> funciones = DataStore.getInstance().getSessions();
 
-
-
-
-        List<Session> funciones = crearFuncionesDePrueba();
-
+        // 2) Creo un panel por cada sesión
         for (Session f : funciones) {
-            ShowMoviePanel panel = new ShowMoviePanel(); // creado desde GUI Designer
-            panel.setTitulo(f.getMovie().getTitulo());
-            panel.setDescripcion(f.getMovie().getDescripcion());
-            panel.setHorarios(f.getMovie().getHorarios());
+            ShowMoviePanel panel = new ShowMoviePanel();
+            panel.setTitulo(      f.getMovie().getTitle()      );
+            panel.setDescripcion(f.getMovie().getDescription());
+            // Si tu ShowMoviePanel sigue teniendo comboBox de horarios:
+            // panel.setHorarios(f.getMovie().getHorarios());
+
             panel.setOpaque(false);
-//            panel.getMoviePanel().setOpaque(false);
-
             panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
 
             MovieContainer.add(panel);
         }
 
         MovieContainer.revalidate();
         MovieContainer.repaint();
-    }
-
-    private List<Session> crearFuncionesDePrueba() {
-        List<Session> funciones = new ArrayList<>();
-        for (int i = 1; i <= 10; i++) {
-            String titulo = "Movie " + i;
-            String descripcion = "Info  movie " + i;
-            List<String> horarios = Arrays.asList("12:00", "15:00", "18:00");
-            Movie peli = new Movie(titulo, descripcion, horarios);
-            funciones.add(new Session(peli));
-        }
-        return funciones;
     }
 
 }

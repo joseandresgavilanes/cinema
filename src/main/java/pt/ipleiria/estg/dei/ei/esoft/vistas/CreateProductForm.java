@@ -1,4 +1,27 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
-public class CreateRoomForm1 {
+import pt.ipleiria.estg.dei.ei.esoft.models.ProductBarCategory;
+
+import javax.swing.*;
+
+public class CreateProductForm extends JFrame {
+    private JPanel productPanel;
+    private JComboBox<ProductBarCategory> categoryOptions;
+    private final Runnable onProductCreated;
+
+    public CreateProductForm(Runnable onProductCreated) {
+        this.onProductCreated = onProductCreated;
+        setContentPane(productPanel);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        for (ProductBarCategory category : ProductBarCategory.values()) {
+            categoryOptions.addItem(category);
+        }
+
+        pack();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new CreateProductForm(null).setVisible(true));
+    }
 }

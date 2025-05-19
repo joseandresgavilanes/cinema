@@ -46,4 +46,10 @@ public class Room {
     public void setSoundSystem(SoundSystem soundSystem) {
         this.soundSystem = soundSystem;
     }
+
+    @Override
+    public String toString() {
+        return name + " - " + capacity + " seats";
+    }
+
 }

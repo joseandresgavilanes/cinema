@@ -67,4 +67,10 @@ public class Movie {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
+    @Override
+    public String toString() {
+        return title;
+    }
+
 }

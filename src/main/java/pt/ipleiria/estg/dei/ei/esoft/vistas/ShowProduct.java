@@ -21,7 +21,6 @@ public class ShowProduct extends JFrame {
 
         ProductContainer.setLayout(new BoxLayout(ProductContainer, BoxLayout.Y_AXIS));
 
-        // Obtengo la lista de productos del DataStore
         List<Product> productos = DataStore.getInstance().getProducts();
 
         for (Product p : productos) {
@@ -29,6 +28,7 @@ public class ShowProduct extends JFrame {
             panel.setName(       p.getName()       );
             panel.setDescription(p.getDescription());
             panel.setPrice(      p.getPrice()      );
+            panel.setPhoto(     p.getPhoto()    );
             panel.setOpaque(false);
             ProductContainer.add(panel);
         }

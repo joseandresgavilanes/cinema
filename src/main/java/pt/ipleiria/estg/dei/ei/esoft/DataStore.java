@@ -36,13 +36,13 @@ public class DataStore {
         rooms.add(r4);
 
         // —– Movies —–
-        Movie m1 = new Movie("Matrix", "Classic science fiction", 136, Genre.SCI_FI, Language.ENGLISH, "/images/matrix.jpg");
-        Movie m2 = new Movie("Amelie", "French romantic comedy", 122, Genre.COMEDY, Language.ENGLISH, "/images/amelie.jpg");
-        Movie m3 = new Movie("The Godfather", "Italian-American crime family drama", 175, Genre.DRAMA, Language.ENGLISH, "/images/godfather.jpg");
-        Movie m4 = new Movie("Spirited Away", "Japanese animated fantasy adventure", 125, Genre.ANIMATION, Language.PORTUGUESE, "/images/spiritedaway.jpg");
-        Movie m5 = new Movie("Parasite", "South Korean thriller about social inequality", 132, Genre.THRILLER, Language.PORTUGUESE, "/images/parasite.jpg");
-        Movie m6 = new Movie("Coco", "Animated adventure inspired by the Day of the Dead", 105, Genre.ANIMATION, Language.SPANISH, "/images/coco.jpg");
-        Movie m7 = new Movie("Interstellar", "Epic space travel and human survival", 169, Genre.SCI_FI, Language.ENGLISH, "/images/interstellar.jpg");
+        Movie m1 = new Movie("Matrix", "Classic science fiction", 136, Genre.SCI_FI, Language.ENGLISH, "/images/matrix_movie.png");
+        Movie m2 = new Movie("Amelie", "French romantic comedy", 122, Genre.COMEDY, Language.ENGLISH, "/images/amelie_movie.png");
+        Movie m3 = new Movie("The Godfather", "Italian-American crime family drama", 175, Genre.DRAMA, Language.ENGLISH, "/images/godfather_movie.png");
+        Movie m4 = new Movie("Spirited Away", "Japanese animated fantasy adventure", 125, Genre.ANIMATION, Language.PORTUGUESE, "/images/spiritedaway_movie.png");
+        Movie m5 = new Movie("Parasite", "South Korean thriller about social inequality", 132, Genre.THRILLER, Language.PORTUGUESE, "/images/parasite_movie.png");
+        Movie m6 = new Movie("Coco", "Animated adventure inspired by the Day of the Dead", 105, Genre.ANIMATION, Language.SPANISH, "/images/coco_movie.png");
+        Movie m7 = new Movie("Interstellar", "Epic space travel and human survival", 169, Genre.SCI_FI, Language.ENGLISH, "/images/interstellar_movie.png");
         movies.addAll(Arrays.asList(m1, m2, m3, m4, m5, m6, m7));
 
         // —– Sessions —–
@@ -55,12 +55,12 @@ public class DataStore {
         sessions.add(new Session("Interstellar – Room 4 (19:00)", m7, r4, "2025-05-23 19:00"));
 
         // —– Products —–
-        products.add(new Product("Popcorn", "Salted popcorn", ProductBarCategory.SNACK.getDisplayName(), 2.50));
-        products.add(new Product("Soda", "Carbonated soft drink", ProductBarCategory.DRINK.getDisplayName(), 1.75));
-        products.add(new Product("Nachos", "Cheesy nachos", ProductBarCategory.FOOD.getDisplayName(), 3.00));
-        products.add(new Product("Hot Dog", "Classic hot dog with mustard", ProductBarCategory.FOOD.getDisplayName(), 3.50));
-        products.add(new Product("Iced Tea", "Refreshing lemon iced tea", ProductBarCategory.DRINK.getDisplayName(), 2.00));
-        products.add(new Product("Candy", "Assorted sweets", ProductBarCategory.SNACK.getDisplayName(), 1.25));
+        products.add(new Product("Popcorn", "Salted popcorn", ProductBarCategory.SNACK.getDisplayName(), 2.50, "/images/popcorn_product.png"));
+        products.add(new Product("Soda", "Carbonated soft drink", ProductBarCategory.DRINK.getDisplayName(), 1.75, "/images/soda_product.png"));
+        products.add(new Product("Nachos", "Cheesy nachos", ProductBarCategory.FOOD.getDisplayName(), 3.00, "/images/nachos_product.png"));
+        products.add(new Product("Hot Dog", "Classic hot dog with mustard", ProductBarCategory.FOOD.getDisplayName(), 3.50, "/images/hotdog_product.png"));
+        products.add(new Product("Iced Tea", "Refreshing lemon iced tea", ProductBarCategory.DRINK.getDisplayName(), 2.00, "/images/icetea_product.png"));
+        products.add(new Product("Candy", "Assorted sweets", ProductBarCategory.SNACK.getDisplayName(), 1.25, "/images/candy_product.png"));
     }
 
     public List<Movie> getMovies() { return Collections.unmodifiableList(movies); }

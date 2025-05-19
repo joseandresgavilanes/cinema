@@ -6,13 +6,18 @@ public class Product {
     private String description;
     private String category; // combo, bebida, snack
     private double price;
-    private String Imagepath;
+    private String imagePath;
 
-    public Product(String name,String description, String category,  double price) {
+    public Product(String name, String description, String category, double price, String imagePath) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.category = category;
+        this.imagePath = imagePath;
+    }
+
+    public String getPhoto() {
+        return imagePath;
     }
 
     public String getName() {

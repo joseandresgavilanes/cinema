@@ -30,6 +30,7 @@ public class ShowSession extends JFrame {
             ShowMoviePanel panel = new ShowMoviePanel();
             panel.setTitulo(      f.getMovie().getTitle()      );
             panel.setDescripcion(f.getMovie().getDescription());
+            panel.setPhoto(f.getMovie().getImagePath());
             // Si tu ShowMoviePanel sigue teniendo comboBox de horarios:
             // panel.setHorarios(f.getMovie().getHorarios());
 

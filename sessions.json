@@ -1,0 +1,170 @@
+[
+  {
+    "sessionId": 0,
+    "name": "Matrix – Room 1 (18:00)",
+    "movie": {
+      "movieId": 0,
+      "title": "Matrix",
+      "description": "Classic science fiction",
+      "duration": 136,
+      "genre": "SCI_FI",
+      "language": "ENGLISH",
+      "imagePath": "/images/matrix_movie.png"
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 1",
+      "capacity": 50,
+      "accessibility": true,
+      "soundSystem": "DOLBY_ATMOS"
+    },
+    "schedule": "2025-05-20 18:00"
+  },
+  {
+    "sessionId": 0,
+    "name": "Amelie – Room 2 (20:30)",
+    "movie": {
+      "movieId": 0,
+      "title": "Amelie",
+      "description": "French romantic comedy",
+      "duration": 122,
+      "genre": "COMEDY",
+      "language": "ENGLISH",
+      "imagePath": "/images/amelie_movie.png"
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 2",
+      "capacity": 30,
+      "accessibility": false,
+      "soundSystem": "STEREO"
+    },
+    "schedule": "2025-05-20 20:30"
+  },
+  {
+    "sessionId": 0,
+    "name": "The Godfather – Room 3 (21:00)",
+    "movie": {
+      "movieId": 0,
+      "title": "The Godfather",
+      "description": "Italian-American crime family drama",
+      "duration": 175,
+      "genre": "DRAMA",
+      "language": "ENGLISH",
+      "imagePath": "/images/godfather_movie.png"
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 3",
+      "capacity": 20,
+      "accessibility": false,
+      "soundSystem": "DTS"
+    },
+    "schedule": "2025-05-21 21:00"
+  },
+  {
+    "sessionId": 0,
+    "name": "Spirited Away – Room 1 (16:00)",
+    "movie": {
+      "movieId": 0,
+      "title": "Spirited Away",
+      "description": "Japanese animated fantasy adventure",
+      "duration": 125,
+      "genre": "ANIMATION",
+      "language": "PORTUGUESE",
+      "imagePath": "/images/spiritedaway_movie.png"
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 1",
+      "capacity": 50,
+      "accessibility": true,
+      "soundSystem": "DOLBY_ATMOS"
+    },
+    "schedule": "2025-05-21 16:00"
+  },
+  {
+    "sessionId": 0,
+    "name": "Parasite – Room 4 (22:00)",
+    "movie": {
+      "movieId": 0,
+      "title": "Parasite",
+      "description": "South Korean thriller about social inequality",
+      "duration": 132,
+      "genre": "THRILLER",
+      "language": "PORTUGUESE",
+      "imagePath": "/images/parasite_movie.png"
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 4",
+      "capacity": 100,
+      "accessibility": true,
+      "soundSystem": "SURROUND"
+    },
+    "schedule": "2025-05-22 22:00"
+  },
+  {
+    "sessionId": 0,
+    "name": "Coco – Room 2 (14:00)",
+    "movie": {
+      "movieId": 0,
+      "title": "Coco",
+      "description": "Animated adventure inspired by the Day of the Dead",
+      "duration": 105,
+      "genre": "ANIMATION",
+      "language": "SPANISH",
+      "imagePath": "/images/coco_movie.png"
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 2",
+      "capacity": 30,
+      "accessibility": false,
+      "soundSystem": "STEREO"
+    },
+    "schedule": "2025-05-22 14:00"
+  },
+  {
+    "sessionId": 0,
+    "name": "Interstellar – Room 4 (19:00)",
+    "movie": {
+      "movieId": 0,
+      "title": "Interstellar",
+      "description": "Epic space travel and human survival",
+      "duration": 169,
+      "genre": "SCI_FI",
+      "language": "ENGLISH",
+      "imagePath": "/images/interstellar_movie.png"
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 4",
+      "capacity": 100,
+      "accessibility": true,
+      "soundSystem": "SURROUND"
+    },
+    "schedule": "2025-05-23 19:00"
+  },
+  {
+    "sessionId": 0,
+    "name": "Spirited Away - Room 90 (2025-05-22 14:00)",
+    "movie": {
+      "movieId": 0,
+      "title": "Spirited Away",
+      "description": "Japanese animated fantasy adventure",
+      "duration": 125,
+      "genre": "ANIMATION",
+      "language": "PORTUGUESE",
+      "imagePath": "/images/spiritedaway_movie.png"
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 90",
+      "capacity": 40,
+      "accessibility": true,
+      "soundSystem": "DOLBY_ATMOS"
+    },
+    "schedule": "2025-05-22 14:00"
+  }
+]

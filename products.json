@@ -1,0 +1,50 @@
+[
+  {
+    "productId": 0,
+    "name": "Popcorn",
+    "description": "Salted popcorn",
+    "category": "Snack",
+    "price": 2.5,
+    "imagePath": "/images/popcorn_product.png"
+  },
+  {
+    "productId": 0,
+    "name": "Soda",
+    "description": "Carbonated soft drink",
+    "category": "Drink",
+    "price": 1.75,
+    "imagePath": "/images/soda_product.png"
+  },
+  {
+    "productId": 0,
+    "name": "Nachos",
+    "description": "Cheesy nachos",
+    "category": "Food",
+    "price": 3.0,
+    "imagePath": "/images/nachos_product.png"
+  },
+  {
+    "productId": 0,
+    "name": "Hot Dog",
+    "description": "Classic hot dog with mustard",
+    "category": "Food",
+    "price": 3.5,
+    "imagePath": "/images/hotdog_product.png"
+  },
+  {
+    "productId": 0,
+    "name": "Iced Tea",
+    "description": "Refreshing lemon iced tea",
+    "category": "Drink",
+    "price": 2.0,
+    "imagePath": "/images/icetea_product.png"
+  },
+  {
+    "productId": 0,
+    "name": "Candy",
+    "description": "Assorted sweets",
+    "category": "Snack",
+    "price": 1.25,
+    "imagePath": "/images/candy_product.png"
+  }
+]

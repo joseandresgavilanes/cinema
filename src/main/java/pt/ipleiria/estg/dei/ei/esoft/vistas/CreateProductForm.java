@@ -7,6 +7,9 @@ import javax.swing.*;
 public class CreateProductForm extends JFrame {
     private JPanel productPanel;
     private JComboBox<ProductBarCategory> categoryOptions;
+    private JTextField descriptionInput;
+    private JLabel imageUpload;
+    private JButton addProduct;
     private final Runnable onProductCreated;
 
     public CreateProductForm(Runnable onProductCreated) {

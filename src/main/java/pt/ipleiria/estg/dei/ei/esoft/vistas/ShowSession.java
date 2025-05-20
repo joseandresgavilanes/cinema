@@ -1,15 +1,20 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
 import pt.ipleiria.estg.dei.ei.esoft.DataStore;
-import pt.ipleiria.estg.dei.ei.esoft.DataStore;
 import pt.ipleiria.estg.dei.ei.esoft.models.Session;
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class ShowSession extends JFrame {
     private JPanel SessionPanel;
     private JPanel MovieContainer;
     private JScrollPane ScrollPanel;
+    private JButton billboardButton;
+    private JButton barButton;
+    private JButton loginButton;
+    private JLabel image;
+    private JPanel Navbar;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new ShowSession().setVisible(true));
@@ -19,6 +24,10 @@ public class ShowSession extends JFrame {
         setContentPane(SessionPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
+
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/logo.png"));
+        Image scaledImage = icon.getImage().getScaledInstance(300, 150, Image.SCALE_SMOOTH);
+        image.setIcon(new ImageIcon(scaledImage));
 
         MovieContainer.setLayout(new BoxLayout(MovieContainer, BoxLayout.Y_AXIS));
 
@@ -42,6 +51,22 @@ public class ShowSession extends JFrame {
 
         MovieContainer.revalidate();
         MovieContainer.repaint();
+
+        //mostrar el login
+        loginButton.addActionListener(e -> {
+            Login loginWindow = new Login();
+            loginWindow.setVisible(true);
+        });
+
+        //mostrar el ShowProduct
+        barButton.addActionListener(e -> {
+            ShowProduct showWindow = new ShowProduct();
+            showWindow.setVisible(true);
+        });
+
+
+
+
     }
 
 }

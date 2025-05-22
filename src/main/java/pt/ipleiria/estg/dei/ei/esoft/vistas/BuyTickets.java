@@ -1,11 +1,11 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
+import pt.ipleiria.estg.dei.ei.esoft.models.Session;
 import pt.ipleiria.estg.dei.ei.esoft.models.SessionManager;
+import pt.ipleiria.estg.dei.ei.esoft.models.TicketType;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,16 +31,34 @@ public class BuyTickets extends JFrame {
     private JLabel clientDocumentIdentification;
     private JFormattedTextField clientDocIdentifInput;
     private JButton buyNow;
+    private JLabel movie;
+    private JLabel movieName;
+    private JComboBox ticketTypeCombo;
+    private JLabel ticketType;
+
+    private Session sessionSelected;
 
     private static final int ROWS = 5;
     private static final int COLUMNS = 5;
     private final List<JToggleButton> seatButtons = new ArrayList<>();
 
-    public BuyTickets() {
+    public BuyTickets(Session session) {
+        this.sessionSelected = session;
         setTitle("Buy Tickets");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setContentPane(buyTicketsPanel);
+        roomSession.setText(session.getRoom().getName());
+        dateSession.setText(session.getSchedule());
+        movieName.setText(session.getMovie().getTitle());
+        for (TicketType type : TicketType.values()) {
+            ticketTypeCombo.addItem(type);
+        }
+
+        ticketTypeCombo.setSelectedIndex(0);
+        updatePriceLabel();
+
+        ticketTypeCombo.addActionListener(e -> updatePriceLabel());
 
         initializeSeatSelector();
 
@@ -114,7 +132,6 @@ public class BuyTickets extends JFrame {
                     JOptionPane.INFORMATION_MESSAGE
             );
 
-            // Limpiar después de compra si deseas
         });
     }
 
@@ -134,15 +151,37 @@ public class BuyTickets extends JFrame {
                     } else {
                         seatButton.setBackground(null);
                     }
+
+                    updatePriceLabel();
                 });
 
-                seatButtons.add(seatButton); // Guardamos para validación
+
+                seatButtons.add(seatButton);
                 seatSelection.add(seatButton);
             }
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(BuyTickets::new);
+    private void updatePriceLabel() {
+        Object selected = ticketTypeCombo.getSelectedItem();
+        if (selected instanceof TicketType) {
+            TicketType selectedType = (TicketType) selected;
+
+            long selectedSeatsCount = seatButtons.stream()
+                    .filter(AbstractButton::isSelected)
+                    .count();
+
+            if (selectedSeatsCount == 0) {
+                selectedSeatsCount = 1;
+            }
+
+            double unitPrice = sessionSelected.calculatePrice(selectedType);
+            double totalPrice = unitPrice * selectedSeatsCount;
+
+            priceTag.setText(String.format("%.2f €", totalPrice));
+        }
     }
+
+
+
 }

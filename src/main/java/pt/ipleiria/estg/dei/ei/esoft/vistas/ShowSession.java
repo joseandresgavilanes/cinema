@@ -42,14 +42,15 @@ public class ShowSession extends JFrame {
         MovieContainer.setLayout(new BoxLayout(MovieContainer, BoxLayout.Y_AXIS));
         List<Session> funciones = DataStore.getInstance().getSessions();
         for (Session f : funciones) {
-            ShowMoviePanel panel = new ShowMoviePanel();
-            panel.setTitulo(      f.getMovie().getTitle()      );
+            ShowMoviePanel panel = new ShowMoviePanel(f);
+            panel.setTitulo(f.getMovie().getTitle());
             panel.setDescripcion(f.getMovie().getDescription());
-            panel.setPhoto(      f.getMovie().getImagePath()   );
+            panel.setPhoto(f.getMovie().getImagePath());
             panel.setOpaque(false);
             panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             MovieContainer.add(panel);
         }
+
         MovieContainer.revalidate();
         MovieContainer.repaint();
 

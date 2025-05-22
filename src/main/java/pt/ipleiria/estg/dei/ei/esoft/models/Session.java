@@ -15,6 +15,29 @@ public class Session {
         this.schedule = schedule;
     }
 
+    public double calculatePrice(TicketType ticketType) {
+        double base = ticketType.getBasePrice();
+        double adjustment = getSoundSystemAdjustment(room.getSoundSystem());
+        return base + adjustment;
+    }
+
+    private double getSoundSystemAdjustment(SoundSystem soundSystem) {
+        switch (soundSystem) {
+            case MONO:
+                return 0.0;
+            case STEREO:
+                return 0.5;
+            case SURROUND:
+                return 1.0;
+            case DTS:
+                return 1.5;
+            case DOLBY_ATMOS:
+                return 2.0;
+            default:
+                return 0.0;
+        }
+    }
+
     public Movie getMovie() {
         return movie;
     }

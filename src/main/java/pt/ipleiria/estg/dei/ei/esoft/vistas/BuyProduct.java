@@ -23,7 +23,7 @@ public class BuyProduct extends JFrame {
             if (window != null) {
                 window.dispose();
             }
-            new BuyTickets();
+//            new BuyTickets();
         });
     }
 

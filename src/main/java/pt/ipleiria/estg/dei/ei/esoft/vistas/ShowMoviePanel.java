@@ -1,5 +1,7 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
+import pt.ipleiria.estg.dei.ei.esoft.models.Session;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -11,6 +13,7 @@ public class ShowMoviePanel extends JPanel {
     private JLabel lblTitle;
     private JLabel lblDescription;
     private JLabel lblPhoto;
+    private Session session;
 
     public void setTitulo(String titulo) {
         lblTitle.setText(titulo);
@@ -26,11 +29,13 @@ public class ShowMoviePanel extends JPanel {
             comboBox1.addItem(h);
         }
     }
-    public ShowMoviePanel() {
+    public ShowMoviePanel(Session session) {
+        this.session = session;
+
         add(MoviePanel);
 
         BuyButton.addActionListener(e -> {
-            BuyTickets ventana = new BuyTickets();
+            BuyTickets ventana = new BuyTickets(session);
             ventana.setVisible(true);
         });;
     }

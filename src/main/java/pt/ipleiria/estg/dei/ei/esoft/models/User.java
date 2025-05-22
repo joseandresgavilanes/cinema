@@ -1,5 +1,9 @@
 package pt.ipleiria.estg.dei.ei.esoft.models;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class User {
 
     private int userId;
@@ -7,7 +11,9 @@ public class User {
     private String password;
     private String email;
     private String document;
-    private String role;
+    private UserRole role;
+    private final List<Ticket> tickets  = new ArrayList<>();
+    private final List<Receipt> receipts = new ArrayList<>();
 
     public User(String username, String password, String email, String document) {
         this.username = username;
@@ -49,11 +55,26 @@ public class User {
         this.document = document;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
+
+    public List<Ticket> getTickets() {
+        return Collections.unmodifiableList(tickets);
+    }
+    public void addTicket(Ticket ticket) {
+        this.tickets.add(ticket);
+    }
+
+    public List<Receipt> getReceipts() {
+        return Collections.unmodifiableList(receipts);
+    }
+    public void addReceipt(Receipt receipt) {
+        this.receipts.add(receipt);
+    }
+
 }

@@ -16,6 +16,7 @@ public class DataPersistence {
     private static final String SESSIONS_FILE = "sessions.json";
     private static final String ROOMS_FILE    = "rooms.json";
     private static final String PRODUCTS_FILE = "products.json";
+    private static final String USERS_FILE     = "users.json";
 
     public static void saveMovies(List<Movie> movies) {
         saveList(movies, MOVIES_FILE, new TypeToken<List<Movie>>(){}.getType());
@@ -43,6 +44,14 @@ public class DataPersistence {
     }
     public static List<Product> loadProducts() {
         return loadList(PRODUCTS_FILE, new TypeToken<List<Product>>(){}.getType());
+    }
+
+    public static void saveUsers(List<User> users) {
+        saveList(users, USERS_FILE, new TypeToken<List<User>>(){}.getType());
+    }
+
+    public static List<User> loadUsers() {
+        return loadList(USERS_FILE, new TypeToken<List<User>>(){}.getType());
     }
 
     private static <T> void saveList(List<T> list, String fileName, Type type) {

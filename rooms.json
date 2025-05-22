@@ -26,12 +26,5 @@
     "capacity": 100,
     "accessibility": true,
     "soundSystem": "SURROUND"
-  },
-  {
-    "roomId": 0,
-    "name": "Room 90",
-    "capacity": 40,
-    "accessibility": true,
-    "soundSystem": "DOLBY_ATMOS"
   }
 ]

@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class ticketShowClient {
+public class Ticket {
     private JPanel panel1;
     private JLabel cinemaLogo;
     private JLabel roomNumber;
@@ -14,7 +14,7 @@ public class ticketShowClient {
     private JLabel priceTicket;
     private JLabel movieName;
 
-    public ticketShowClient() {
+    public Ticket() {
         panel1.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(Color.BLACK, 1, true),
                 new EmptyBorder(10, 10, 10, 10)

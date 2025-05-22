@@ -1,0 +1,46 @@
+[
+  {
+    "userId": 0,
+    "username": "admin",
+    "password": "admin123",
+    "email": "admin@cine.com",
+    "document": "00000000A",
+    "role": "ADMIN"
+  },
+  {
+    "userId": 0,
+    "username": "juan",
+    "password": "juanpwd",
+    "email": "juan@mail.com",
+    "document": "12345678B",
+    "role": "USER"
+  },
+  {
+    "userId": 0,
+    "username": "joseandres",
+    "password": "12345678",
+    "email": "jose@gmail.com",
+    "document": "1805123245",
+    "role": "USER"
+  },
+  {
+    "userId": 0,
+    "username": "hola",
+    "password": "hola",
+    "email": "hola@gmail.com",
+    "document": "123456789",
+    "role": "USER",
+    "tickets": [],
+    "receipts": []
+  },
+  {
+    "userId": 0,
+    "username": "raimundo",
+    "password": "12345678",
+    "email": "raimundo@gmail.com",
+    "document": "129034621",
+    "role": "USER",
+    "tickets": [],
+    "receipts": []
+  }
+]

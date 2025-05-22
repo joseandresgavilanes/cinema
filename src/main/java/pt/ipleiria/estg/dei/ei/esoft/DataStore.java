@@ -12,6 +12,7 @@ public class DataStore {
     private final List<Session> sessions = new ArrayList<>();
     private final List<Room>    rooms    = new ArrayList<>();
     private final List<Product> products = new ArrayList<>();
+    private final List<User>     users     = new ArrayList<>();
 
     static {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -35,14 +36,15 @@ public class DataStore {
         List<Session> ls = DataPersistence.loadSessions();
         List<Room>    lr = DataPersistence.loadRooms();
         List<Product> lp = DataPersistence.loadProducts();
+        List<User>    lu = DataPersistence.loadUsers();
 
-        if (lm != null && ls != null && lr != null && lp != null) {
+        if (lm != null && ls != null && lr != null && lp != null && lu != null) {
             movies.addAll(lm);
             sessions.addAll(ls);
             rooms.addAll(lr);
             products.addAll(lp);
+            users.addAll(lu);
         } else {
-            // Ningún fichero existe: cargamos datos de ejemplo y guardamos
             loadDummyData();
             saveAll();
         }
@@ -53,6 +55,7 @@ public class DataStore {
         DataPersistence.saveSessions(sessions);
         DataPersistence.saveRooms(rooms);
         DataPersistence.saveProducts(products);
+        DataPersistence.saveUsers(users);
     }
 
     private void loadDummyData() {
@@ -89,13 +92,22 @@ public class DataStore {
         products.add(new Product("Hot Dog", "Classic hot dog with mustard", ProductBarCategory.FOOD.getDisplayName(), 3.50, "/images/hotdog_product.png"));
         products.add(new Product("Iced Tea","Refreshing lemon iced tea", ProductBarCategory.DRINK.getDisplayName(), 2.00, "/images/icetea_product.png"));
         products.add(new Product("Candy",   "Assorted sweets", ProductBarCategory.SNACK.getDisplayName(), 1.25, "/images/candy_product.png"));
+
+        users.add(new User("admin", "admin123", "admin@cine.com", "00000000A"));
+        users.get(0).setRole(UserRole.ADMIN);
+
+        users.add(new User("juan", "juanpwd", "juan@mail.com", "12345678B"));
+        users.get(1).setRole(UserRole.USER);
     }
+
+
 
     // —— Getters in sólo lectura —— //
     public List<Movie>   getMovies()   { return Collections.unmodifiableList(movies); }
     public List<Session> getSessions() { return Collections.unmodifiableList(sessions); }
     public List<Room>    getRooms()    { return Collections.unmodifiableList(rooms); }
     public List<Product> getProducts() { return Collections.unmodifiableList(products); }
+    public List<User>    getUsers()    { return Collections.unmodifiableList(users); }  // nuevo
 
     // —— Métodos de añadido que persisten al instante —— //
     public void addMovie(Movie m) {
@@ -113,5 +125,10 @@ public class DataStore {
     public void addProduct(Product p) {
         products.add(p);
         DataPersistence.saveProducts(products);
+    }
+
+    public void addUser(User u) {
+        users.add(u);
+        DataPersistence.saveUsers(users);
     }
 }

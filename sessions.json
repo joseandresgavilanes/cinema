@@ -145,26 +145,5 @@
       "soundSystem": "SURROUND"
     },
     "schedule": "2025-05-23 19:00"
-  },
-  {
-    "sessionId": 0,
-    "name": "Spirited Away - Room 90 (2025-05-22 14:00)",
-    "movie": {
-      "movieId": 0,
-      "title": "Spirited Away",
-      "description": "Japanese animated fantasy adventure",
-      "duration": 125,
-      "genre": "ANIMATION",
-      "language": "PORTUGUESE",
-      "imagePath": "/images/spiritedaway_movie.png"
-    },
-    "room": {
-      "roomId": 0,
-      "name": "Room 90",
-      "capacity": 40,
-      "accessibility": true,
-      "soundSystem": "DOLBY_ATMOS"
-    },
-    "schedule": "2025-05-22 14:00"
   }
 ]

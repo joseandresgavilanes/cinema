@@ -1,9 +1,13 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
+import pt.ipleiria.estg.dei.ei.esoft.models.SessionManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BuyTickets extends JFrame {
     private JPanel buyTicketsPanel;
@@ -30,6 +34,7 @@ public class BuyTickets extends JFrame {
 
     private static final int ROWS = 5;
     private static final int COLUMNS = 5;
+    private final List<JToggleButton> seatButtons = new ArrayList<>();
 
     public BuyTickets() {
         setTitle("Buy Tickets");
@@ -51,10 +56,67 @@ public class BuyTickets extends JFrame {
             productFrame.setVisible(true);
         });
 
+        buyNow.addActionListener(e -> {
+            if (!SessionManager.isLoggedIn()) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Debe iniciar sesión para comprar tickets.",
+                        "Acceso Denegado",
+                        JOptionPane.WARNING_MESSAGE
+                );
 
+                Login loginWindow = new Login();
+                loginWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                loginWindow.setVisible(true);
+                return;
+            }
+
+            String clientName = clientNameInput.getText().trim();
+            String clientDoc = clientDocIdentifInput.getText().trim();
+            String paymentMethod = (String) paymentMethodOptions.getSelectedItem();
+
+            boolean seatSelected = seatButtons.stream().anyMatch(JToggleButton::isSelected);
+
+            if (clientName.isEmpty() || clientDoc.isEmpty()) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Debe completar todos los campos obligatorios.",
+                        "Campos Vacíos",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            if (!seatSelected) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Debe seleccionar al menos un asiento.",
+                        "Asiento no seleccionado",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            if (paymentMethod == null || paymentMethod.isEmpty()) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Debe seleccionar un método de pago.",
+                        "Método de Pago no seleccionado",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Compra realizada con éxito.",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+            // Limpiar después de compra si deseas
+        });
     }
-
-
 
     private void initializeSeatSelector() {
         seatSelection.setLayout(new GridLayout(ROWS, COLUMNS, 2, 2));
@@ -62,21 +124,19 @@ public class BuyTickets extends JFrame {
 
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
-                String seatLabel = (char)('A' + row) + String.valueOf(col + 1);
+                String seatLabel = (char) ('A' + row) + String.valueOf(col + 1);
                 JToggleButton seatButton = new JToggleButton(seatLabel);
                 seatButton.setPreferredSize(new Dimension(5, 2));
 
-                seatButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if (seatButton.isSelected()) {
-                            seatButton.setBackground(Color.GREEN);
-                        } else {
-                            seatButton.setBackground(null);
-                        }
+                seatButton.addActionListener(e -> {
+                    if (seatButton.isSelected()) {
+                        seatButton.setBackground(Color.GREEN);
+                    } else {
+                        seatButton.setBackground(null);
                     }
                 });
 
+                seatButtons.add(seatButton); // Guardamos para validación
                 seatSelection.add(seatButton);
             }
         }

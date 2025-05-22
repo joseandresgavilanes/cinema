@@ -6,7 +6,6 @@ import pt.ipleiria.estg.dei.ei.esoft.models.User;
 import pt.ipleiria.estg.dei.ei.esoft.models.UserRole;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Optional;
@@ -14,11 +13,11 @@ import java.util.Optional;
 public class Login extends JFrame {
     private JPanel mainPanel;
     private JTextField userTextField;
-    private JTextField passwordTextField;
     private JButton loginButton;
     private JLabel imgUser;
     private JLabel imgPassword;
     private JButton registerButton;
+    private JPasswordField passwordField;
 
     public Login() {
         setTitle("Login");
@@ -46,7 +45,7 @@ public class Login extends JFrame {
 
     private void doLogin() {
         String username = userTextField.getText().trim();
-        String password = new String(passwordTextField.getText()).trim();
+        String password = new String(passwordField.getPassword()).trim();
 
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(

@@ -11,6 +11,8 @@ import java.util.List;
 public class SessionsAdminPanel extends JFrame {
     private JTable sessionsTable;
     private JButton addSessionButton;
+    private JButton editSessionButton;
+    private JButton deleteSessionButton;
     private JPanel mainPanel;
 
     public SessionsAdminPanel() {
@@ -21,25 +23,62 @@ public class SessionsAdminPanel extends JFrame {
 
         mainPanel = new JPanel(new BorderLayout());
 
+        // — tabla —
         String[] columnNames = {"Title", "Room", "Date & Time"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         sessionsTable = new JTable(tableModel);
-
-        JScrollPane scrollPane = new JScrollPane(sessionsTable);
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
-
+        mainPanel.add(new JScrollPane(sessionsTable), BorderLayout.CENTER);
         loadSessions(tableModel);
 
-        addSessionButton = new JButton("Add New Session");
+        // — botones abajo —
+        addSessionButton    = new JButton("Add New Session");
+        editSessionButton   = new JButton("Edit Selected");
+        deleteSessionButton = new JButton("Delete Selected");
+
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(addSessionButton);
+        bottomPanel.add(editSessionButton);
+        bottomPanel.add(deleteSessionButton);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
+        // — listeners —
         addSessionButton.addActionListener(e -> {
-            CreateSessionForm createForm = new CreateSessionForm(() -> {
-                loadSessions((DefaultTableModel) sessionsTable.getModel());
-            });
-            createForm.setVisible(true);
+            new CreateSessionForm(null, () -> loadSessions(tableModel))
+                    .setVisible(true);
+        });
+
+        editSessionButton.addActionListener(e -> {
+            int row = sessionsTable.getSelectedRow();
+            if (row < 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Please select a session to edit.",
+                        "No selection",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            Session s = DataStore.getInstance().getSessions().get(row);
+            new CreateSessionForm(s, () -> loadSessions(tableModel))
+                    .setVisible(true);
+        });
+
+        deleteSessionButton.addActionListener(e -> {
+            int row = sessionsTable.getSelectedRow();
+            if (row < 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Please select a session to delete.",
+                        "No selection",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            int ok = JOptionPane.showConfirmDialog(this,
+                    "Are you sure you want to delete this session?",
+                    "Confirm delete",
+                    JOptionPane.YES_NO_OPTION);
+            if (ok == JOptionPane.YES_OPTION) {
+                Session s = DataStore.getInstance().getSessions().get(row);
+                DataStore.getInstance().removeSession(s);
+                loadSessions(tableModel);
+            }
         });
 
         add(mainPanel);
@@ -48,7 +87,6 @@ public class SessionsAdminPanel extends JFrame {
     private void loadSessions(DefaultTableModel model) {
         model.setRowCount(0);
         List<Session> sessions = DataStore.getInstance().getSessions();
-
         for (Session session : sessions) {
             model.addRow(new Object[]{
                     session.getMovie().getTitle(),

@@ -6,6 +6,7 @@ import pt.ipleiria.estg.dei.ei.esoft.models.User;
 import pt.ipleiria.estg.dei.ei.esoft.models.UserRole;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Optional;
@@ -18,11 +19,13 @@ public class Login extends JFrame {
     private JLabel imgPassword;
     private JButton registerButton;
     private JPasswordField passwordField;
+    private JLabel loginText;
 
     public Login() {
         setTitle("Login");
         setContentPane(mainPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        mainPanel.setBackground(Color.DARK_GRAY);
 
         loginButton.addActionListener(new ActionListener() {
             @Override

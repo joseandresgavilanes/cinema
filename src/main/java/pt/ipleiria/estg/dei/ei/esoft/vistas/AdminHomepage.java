@@ -11,11 +11,16 @@ public class AdminHomepage extends JFrame {
     private JButton manageRoomsButton;
     private JButton manageBarButton;
     private JLabel image;
-    private JPanel admin;
+    private JPanel adminPanel;
+    private JPanel logo;
+    private JPanel buttons;
 
     public AdminHomepage() {
-        setContentPane(admin);
+        setContentPane(adminPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        adminPanel.setBackground(Color.DARK_GRAY);
+        logo.setBackground(Color.DARK_GRAY);
+        buttons.setBackground(Color.DARK_GRAY);
 
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/logo.png"));
         Image scaledImage = icon.getImage().getScaledInstance(300, 150, Image.SCALE_SMOOTH);

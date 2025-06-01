@@ -3,6 +3,7 @@ package pt.ipleiria.estg.dei.ei.esoft.vistas;
 import pt.ipleiria.estg.dei.ei.esoft.models.ProductBarCategory;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class CreateProductForm extends JFrame {
     private JPanel productPanel;
@@ -14,6 +15,9 @@ public class CreateProductForm extends JFrame {
 
     public CreateProductForm(Runnable onProductCreated) {
         this.onProductCreated = onProductCreated;
+        productPanel.setBackground(Color.DARK_GRAY);
+
+
         setContentPane(productPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 

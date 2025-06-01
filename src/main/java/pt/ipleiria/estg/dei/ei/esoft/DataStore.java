@@ -131,4 +131,26 @@ public class DataStore {
         users.add(u);
         DataPersistence.saveUsers(users);
     }
+
+    public void removeSession(Session s) {
+        sessions.remove(s);
+        DataPersistence.saveSessions(sessions);
+    }
+
+    public void removeMovie(Movie m) {
+        movies.remove(m);
+        DataPersistence.saveMovies(movies);
+    }
+
+    public void updateSession(Session s) {
+        DataPersistence.saveSessions(sessions);
+    }
+
+
+    public void updateMovie(Movie m) {
+        DataPersistence.saveMovies(movies);
+    }
+
+
+
 }

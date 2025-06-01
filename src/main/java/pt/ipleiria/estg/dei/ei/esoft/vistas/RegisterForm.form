@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="pt.ipleiria.estg.dei.ei.esoft.vistas.RegisterForm">
-  <grid id="27dc6" binding="userPanel" layout-manager="GridLayoutManager" row-count="6" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="userPanel" layout-manager="GridLayoutManager" row-count="6" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="569" height="422"/>
+      <xy x="20" y="20" width="800" height="422"/>
     </constraints>
     <properties>
       <background color="-13947600"/>
       <foreground color="-13947600"/>
-      <preferredSize width="500" height="500"/>
+      <minimumSize width="800" height="300"/>
+      <preferredSize width="800" height="800"/>
     </properties>
     <border type="none"/>
     <children>
@@ -88,11 +89,6 @@
           <text value="Document"/>
         </properties>
       </component>
-      <vspacer id="72958">
-        <constraints>
-          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
       <component id="7e735" class="javax.swing.JButton" binding="saveButton">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -101,16 +97,6 @@
           <text value="Create"/>
         </properties>
       </component>
-      <vspacer id="d43ab">
-        <constraints>
-          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
-      <vspacer id="c9811">
-        <constraints>
-          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
       <component id="c03c1" class="javax.swing.JPasswordField" binding="passwordField">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -119,6 +105,11 @@
         </constraints>
         <properties/>
       </component>
+      <hspacer id="434da">
+        <constraints>
+          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
     </children>
   </grid>
 </form>

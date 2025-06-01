@@ -6,6 +6,7 @@ import pt.ipleiria.estg.dei.ei.esoft.models.Language;
 import pt.ipleiria.estg.dei.ei.esoft.models.Movie;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class CreateMovieForm extends JFrame {
     private JPanel adminPanel;
@@ -17,37 +18,50 @@ public class CreateMovieForm extends JFrame {
     private JComboBox<Genre> generoOptions;
     private JComboBox<Language> languageOptions;
 
-    private final Runnable onMovieCreated;
+    private final Runnable onMovieSaved;
+    private final Movie editingMovie;
 
-    public CreateMovieForm(Runnable onMovieCreated) {
-        this.onMovieCreated = onMovieCreated;
+    /**
+     * @param movieToEdit   null → crear; no-null → editar
+     * @param onMovieSaved  callback para recargar tabla
+     */
+    public CreateMovieForm(Movie movieToEdit, Runnable onMovieSaved) {
+        this.editingMovie = movieToEdit;
+        this.onMovieSaved = onMovieSaved;
 
+        adminPanel.setBackground(Color.DARK_GRAY);
+
+        setTitle(editingMovie != null ? "Edit Movie" : "Create Movie");
         setContentPane(adminPanel);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        for (Genre genre : Genre.values()) {
-            generoOptions.addItem(genre);
-        }
-        for (Language lang : Language.values()) {
-            languageOptions.addItem(lang);
+        // carga géneros y lenguajes
+        for (Genre g : Genre.values())   generoOptions.addItem(g);
+        for (Language l : Language.values()) languageOptions.addItem(l);
+
+        // si venimos a editar, rellenamos campos
+        if (editingMovie != null) {
+            tituloTextField.setText(editingMovie.getTitle());
+            sinopsisTextField.setText(editingMovie.getDescription());
+            duracionTextField.setText(String.valueOf(editingMovie.getDuration()));
+            generoOptions.setSelectedItem(editingMovie.getGenre());
+            languageOptions.setSelectedItem(editingMovie.getLanguage());
         }
 
         cancelButton.addActionListener(e -> dispose());
 
         saveButton.addActionListener(e -> {
-            String title = tituloTextField.getText().trim();
-            String synopsis = sinopsisTextField.getText().trim();
-            String durText = duracionTextField.getText().trim();
-            Genre genre = (Genre) generoOptions.getSelectedItem();
-            Language language = (Language) languageOptions.getSelectedItem();
+            String title    = tituloTextField.getText().trim();
+            String synop    = sinopsisTextField.getText().trim();
+            String durText  = duracionTextField.getText().trim();
+            Genre genre     = (Genre) generoOptions.getSelectedItem();
+            Language lang   = (Language) languageOptions.getSelectedItem();
 
             if (title.isEmpty() || durText.isEmpty()) {
-                JOptionPane.showMessageDialog(
-                        this,
+                JOptionPane.showMessageDialog(this,
                         "Título y duración son obligatorios.",
                         "Error",
-                        JOptionPane.ERROR_MESSAGE
-                );
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -55,42 +69,54 @@ public class CreateMovieForm extends JFrame {
             try {
                 duration = Integer.parseInt(durText);
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(
-                        this,
+                JOptionPane.showMessageDialog(this,
                         "La duración debe ser un número entero.",
                         "Error de formato",
-                        JOptionPane.ERROR_MESSAGE
-                );
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            Movie movie = new Movie(title, synopsis, duration, genre, language, "");
+            DataStore ds = DataStore.getInstance();
+            if (editingMovie != null) {
+                // — MODO EDICIÓN —
+                editingMovie.setTitle(title);
+                editingMovie.setDescription(synop);
+                editingMovie.setDuration(duration);
+                editingMovie.setGenre(genre);
+                editingMovie.setLanguage(lang);
+                ds.updateMovie(editingMovie);
 
-            DataStore.getInstance().addMovie(movie);
+                JOptionPane.showMessageDialog(this,
+                        "Película actualizada correctamente.",
+                        "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // — MODO CREACIÓN —
+                Movie m = new Movie(title, synop, duration, genre, lang, "");
+                ds.addMovie(m);
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Película \"" + title + "\" creada correctamente.",
-                    "Éxito",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-
-            dispose();
-
-            if (onMovieCreated != null) {
-                onMovieCreated.run();
+                JOptionPane.showMessageDialog(this,
+                        "Película creada correctamente.",
+                        "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
+
+            if (onMovieSaved != null) onMovieSaved.run();
+            dispose();
         });
 
         pack();
         setLocationRelativeTo(null);
     }
 
-    public CreateMovieForm() {
-        this(null);
+    /** constructor de conveniencia para solo creación */
+    public CreateMovieForm(Runnable onMovieCreated) {
+        this(null, onMovieCreated);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new CreateMovieForm().setVisible(true));
+        SwingUtilities.invokeLater(() ->
+                new CreateMovieForm(() -> {}).setVisible(true)
+        );
     }
 }

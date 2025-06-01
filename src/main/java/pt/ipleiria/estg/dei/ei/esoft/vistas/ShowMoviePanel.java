@@ -15,6 +15,46 @@ public class ShowMoviePanel extends JPanel {
     private JLabel lblPhoto;
     private Session session;
 
+    public ShowMoviePanel(Session session) {
+        this.session = session;
+
+
+        lblPhoto.setPreferredSize(new Dimension(120, 180));
+        lblPhoto.setHorizontalAlignment(JLabel.CENTER);
+        lblPhoto.setVerticalAlignment(JLabel.CENTER);
+        lblPhoto.setForeground(Color.WHITE);
+        add(lblPhoto, BorderLayout.WEST);
+
+        lblTitle.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblTitle.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        lblDescription.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        lblDescription.setForeground(Color.LIGHT_GRAY);
+        lblDescription.setAlignmentX(Component.LEFT_ALIGNMENT);
+        lblDescription.setMaximumSize(new Dimension(800, 50));
+
+        comboBox1.setAlignmentX(Component.LEFT_ALIGNMENT);
+        comboBox1.setMaximumSize(new Dimension(200, 30));
+
+        BuyButton.setBackground(new Color(229, 9, 20));
+        BuyButton.setFocusPainted(false);
+        BuyButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+        BuyButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        BuyButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        MoviePanel.setPreferredSize(new Dimension(500, 180));
+
+        add(MoviePanel, BorderLayout.CENTER);
+
+        BuyButton.addActionListener(e -> {
+            BuyTickets ventana = new BuyTickets(session);
+            ventana.setVisible(true);
+        });
+
+
+
+    }
+
     public void setTitulo(String titulo) {
         lblTitle.setText(titulo);
     }
@@ -29,27 +69,17 @@ public class ShowMoviePanel extends JPanel {
             comboBox1.addItem(h);
         }
     }
-    public ShowMoviePanel(Session session) {
-        this.session = session;
-
-        add(MoviePanel);
-
-        BuyButton.addActionListener(e -> {
-            BuyTickets ventana = new BuyTickets(session);
-            ventana.setVisible(true);
-        });;
-    }
 
     public void setPhoto(String photoPath) {
         java.net.URL imgURL = getClass().getResource(photoPath);
         if (imgURL != null) {
             ImageIcon icon = new ImageIcon(imgURL);
-            Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-            icon = new ImageIcon(scaledImage);
-            lblPhoto.setIcon(icon);
+            Image scaledImage = icon.getImage().getScaledInstance(120, 180, Image.SCALE_SMOOTH);
+            lblPhoto.setIcon(new ImageIcon(scaledImage));
             lblPhoto.setText(null);
         } else {
-            lblPhoto.setText("Image not found");
+            lblPhoto.setText("No image found");
         }
     }
+
 }

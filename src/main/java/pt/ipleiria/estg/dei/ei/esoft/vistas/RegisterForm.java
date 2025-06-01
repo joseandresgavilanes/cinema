@@ -5,6 +5,8 @@ import pt.ipleiria.estg.dei.ei.esoft.DataStore;
 import pt.ipleiria.estg.dei.ei.esoft.models.User;
 import pt.ipleiria.estg.dei.ei.esoft.models.UserRole;
 
+import java.awt.*;
+
 public class RegisterForm extends javax.swing.JFrame {
     private JPanel userPanel;
     private JTextField usernameTextField;
@@ -17,6 +19,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
     public RegisterForm(Runnable onUserCreated) {
         this.onUserCreated = onUserCreated;
+        userPanel.setBackground(Color.DARK_GRAY);
 
         setTitle("Create User");
         setContentPane(userPanel);

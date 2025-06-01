@@ -5,6 +5,7 @@ import pt.ipleiria.estg.dei.ei.esoft.models.Room;
 import pt.ipleiria.estg.dei.ei.esoft.models.SoundSystem;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class CreateRoomForm extends JFrame {
     private JPanel adminPanel;
@@ -14,11 +15,15 @@ public class CreateRoomForm extends JFrame {
     private JComboBox<SoundSystem> comboBoxSoundsSystem;
     private JButton cancelButton;
     private JButton saveButton;
+    private JPanel buttons;
 
     private final Runnable onRoomCreated;
 
     public CreateRoomForm(Runnable onRoomCreated) {
         this.onRoomCreated = onRoomCreated;
+        adminPanel.setBackground(Color.DARK_GRAY);
+        buttons.setBackground(Color.DARK_GRAY);
+
 
         setTitle("Create Room");
         setContentPane(adminPanel);

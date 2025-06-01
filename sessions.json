@@ -124,26 +124,5 @@
       "soundSystem": "STEREO"
     },
     "schedule": "2025-05-22 14:00"
-  },
-  {
-    "sessionId": 0,
-    "name": "Interstellar – Room 4 (19:00)",
-    "movie": {
-      "movieId": 0,
-      "title": "Interstellar",
-      "description": "Epic space travel and human survival",
-      "duration": 169,
-      "genre": "SCI_FI",
-      "language": "ENGLISH",
-      "imagePath": "/images/interstellar_movie.png"
-    },
-    "room": {
-      "roomId": 0,
-      "name": "Room 4",
-      "capacity": 100,
-      "accessibility": true,
-      "soundSystem": "SURROUND"
-    },
-    "schedule": "2025-05-23 19:00"
   }
 ]

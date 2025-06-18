@@ -53,7 +53,7 @@ public class Login extends JFrame {
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
-                    "Usuario y contraseña obligatorios.",
+                    "Username and Password required.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE
             );
@@ -71,7 +71,7 @@ public class Login extends JFrame {
         if (!opt.isPresent()) {
             JOptionPane.showMessageDialog(
                     this,
-                    "Credenciales incorrectas.",
+                    "Incorrect credentials.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE
             );

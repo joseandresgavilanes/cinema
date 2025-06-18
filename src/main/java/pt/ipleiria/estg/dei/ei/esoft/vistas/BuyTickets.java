@@ -78,8 +78,8 @@ public class BuyTickets extends JFrame {
             if (!SessionManager.isLoggedIn()) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "Debe iniciar sesión para comprar tickets.",
-                        "Acceso Denegado",
+                        "You have to login to buy tickets.",
+                        "Access denied",
                         JOptionPane.WARNING_MESSAGE
                 );
 
@@ -98,8 +98,8 @@ public class BuyTickets extends JFrame {
             if (clientName.isEmpty() || clientDoc.isEmpty()) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "Debe completar todos los campos obligatorios.",
-                        "Campos Vacíos",
+                        "Please, fill all the fields.",
+                        "Empty fields",
                         JOptionPane.WARNING_MESSAGE
                 );
                 return;
@@ -108,8 +108,8 @@ public class BuyTickets extends JFrame {
             if (!seatSelected) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "Debe seleccionar al menos un asiento.",
-                        "Asiento no seleccionado",
+                        "You have to chose at least one seat.",
+                        "No seat selected",
                         JOptionPane.WARNING_MESSAGE
                 );
                 return;
@@ -118,8 +118,8 @@ public class BuyTickets extends JFrame {
             if (paymentMethod == null || paymentMethod.isEmpty()) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "Debe seleccionar un método de pago.",
-                        "Método de Pago no seleccionado",
+                        "You have to chose at least one payment method.",
+                        "No payment method selected",
                         JOptionPane.WARNING_MESSAGE
                 );
                 return;
@@ -127,8 +127,8 @@ public class BuyTickets extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Compra realizada con éxito.",
-                    "Éxito",
+                    "Purchase completed.",
+                    "Purchase completed",
                     JOptionPane.INFORMATION_MESSAGE
             );
 

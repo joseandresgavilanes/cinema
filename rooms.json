@@ -26,5 +26,12 @@
     "capacity": 100,
     "accessibility": true,
     "soundSystem": "SURROUND"
+  },
+  {
+    "roomId": 0,
+    "name": "r00m 2",
+    "capacity": 100,
+    "accessibility": true,
+    "soundSystem": "DTS"
   }
 ]

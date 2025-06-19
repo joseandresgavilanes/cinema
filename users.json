@@ -3,7 +3,6 @@
     "userId": 0,
     "username": "admin",
     "password": "admin123",
-    "email": "admin@cine.com",
     "document": "00000000A",
     "role": "ADMIN"
   },
@@ -39,6 +38,16 @@
     "password": "12345678",
     "email": "raimundo@gmail.com",
     "document": "129034621",
+    "role": "USER",
+    "tickets": [],
+    "receipts": []
+  },
+  {
+    "userId": 0,
+    "username": "lololo",
+    "password": "lololo",
+    "email": "lololo",
+    "document": "lololo",
     "role": "USER",
     "tickets": [],
     "receipts": []

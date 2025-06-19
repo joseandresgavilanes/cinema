@@ -37,7 +37,7 @@ public class RegisterForm extends javax.swing.JFrame {
                     email.isEmpty()    || document.isEmpty()) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "Todos los campos son obligatorios.",
+                        "All fields are required.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE
                 );
@@ -53,8 +53,8 @@ public class RegisterForm extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Usuario creado correctamente.",
-                    "Éxito",
+                    "User created.",
+                    "Success",
                     JOptionPane.INFORMATION_MESSAGE
             );
             dispose();

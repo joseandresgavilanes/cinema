@@ -59,7 +59,7 @@ public class CreateMovieForm extends JFrame {
 
             if (title.isEmpty() || durText.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
-                        "Título y duración son obligatorios.",
+                        "Title and duration are required.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
@@ -70,8 +70,8 @@ public class CreateMovieForm extends JFrame {
                 duration = Integer.parseInt(durText);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this,
-                        "La duración debe ser un número entero.",
-                        "Error de formato",
+                        "The duration must be an integer.",
+                        "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -87,8 +87,8 @@ public class CreateMovieForm extends JFrame {
                 ds.updateMovie(editingMovie);
 
                 JOptionPane.showMessageDialog(this,
-                        "Película actualizada correctamente.",
-                        "Éxito",
+                        "Movie updated correctly.",
+                        "Success",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
                 // — MODO CREACIÓN —
@@ -96,8 +96,8 @@ public class CreateMovieForm extends JFrame {
                 ds.addMovie(m);
 
                 JOptionPane.showMessageDialog(this,
-                        "Película creada correctamente.",
-                        "Éxito",
+                        "Movie created correctly.",
+                        "Success",
                         JOptionPane.INFORMATION_MESSAGE);
             }
 

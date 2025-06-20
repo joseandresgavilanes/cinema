@@ -9,15 +9,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 
-
 public class SeatSelection extends JFrame {
+    // Grid dimensions (can be modified later for dynamic layout)
     private static final int ROWS = 5;
     private static final int COLS = 7;
 
     private final Set<JToggleButton> selectedSeats = new HashSet<>();
     private final int maxSeats;
 
-    private final Map<TicketType, Integer> selectedTickets; // <-- Nuevo
+    private final Map<TicketType, Integer> selectedTickets;
 
     public SeatSelection(Map<TicketType, Integer> selectedTickets) {
         this.selectedTickets = selectedTickets;
@@ -64,7 +64,7 @@ public class SeatSelection extends JFrame {
                 seatButton.setBackground(Color.GREEN.darker());
             } else {
                 seatButton.setSelected(false);
-                JOptionPane.showMessageDialog(this, "Has alcanzado el máximo de asientos permitidos.");
+                JOptionPane.showMessageDialog(this, "You have reached the maximum number of allowed seats.");
             }
         } else {
             selectedSeats.remove(seatButton);
@@ -76,25 +76,24 @@ public class SeatSelection extends JFrame {
         if (selectedSeats.size() != maxSeats) {
             JOptionPane.showMessageDialog(
                     this,
-                    "Debes seleccionar exactamente " + maxSeats + " asientos.",
+                    "You must select exactly " + maxSeats + " seats.",
                     "Error",
                     JOptionPane.WARNING_MESSAGE
             );
             return;
         }
 
-        // Obtener los textos de los botones seleccionados como nombres de asientos (A1, B2, etc.)
+        // Retrieve selected seat labels (e.g., A1, B2, etc.)
         List<String> seatList = selectedSeats.stream()
                 .map(AbstractButton::getText)
                 .sorted()
                 .toList();
 
-        // Abrir ventana de pago
+        // Open payment window
         PaymentWindow paymentWindow = new PaymentWindow(selectedTickets, seatList);
         paymentWindow.setVisible(true);
 
-        // Cerrar esta ventana
+        // Close this window
         this.dispose();
     }
-
 }

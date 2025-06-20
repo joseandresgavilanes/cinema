@@ -49,20 +49,19 @@ public class SelectTickets extends JFrame {
         if (selectedTickets.isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
-                    "Por favor, selecciona al menos un ticket.",
-                    "Selección vacía",
+                    "Please select at least one ticket.",
+                    "No Selection",
                     JOptionPane.WARNING_MESSAGE
             );
         } else {
-            // Abre la ventana de selección de asientos
+            // Open the seat selection window
             SeatSelection seatSelectionWindow = new SeatSelection(selectedTickets);
             seatSelectionWindow.setVisible(true);
 
-            // Opcionalmente cierra esta ventana
+            // Optionally close this window
             this.dispose();
         }
     }
-
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

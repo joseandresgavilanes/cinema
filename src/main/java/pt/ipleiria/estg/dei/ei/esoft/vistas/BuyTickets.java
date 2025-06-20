@@ -1,8 +1,6 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
-import pt.ipleiria.estg.dei.ei.esoft.models.Session;
-import pt.ipleiria.estg.dei.ei.esoft.models.SessionManager;
-import pt.ipleiria.estg.dei.ei.esoft.models.TicketType;
+import pt.ipleiria.estg.dei.ei.esoft.models.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,19 +46,16 @@ public class BuyTickets extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setContentPane(buyTicketsPanel);
-        roomSession.setText(session.getRoom().getName());
-        dateSession.setText(session.getSchedule());
-        movieName.setText(session.getMovie().getTitle());
+
+        // Inicializa UI con la sesión y sus asientos
+        loadSession(session);
+
         for (TicketType type : TicketType.values()) {
             ticketTypeCombo.addItem(type);
         }
-
         ticketTypeCombo.setSelectedIndex(0);
         updatePriceLabel();
-
         ticketTypeCombo.addActionListener(e -> updatePriceLabel());
-
-        initializeSeatSelector();
 
         setVisible(true);
 
@@ -125,14 +120,57 @@ public class BuyTickets extends JFrame {
                 return;
             }
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Purchase completed.",
-                    "Purchase completed",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+            TicketType selectedType = (TicketType) ticketTypeCombo.getSelectedItem();
 
+            for (JToggleButton btn : seatButtons) {
+                if (btn.isSelected()) {
+                    String seatLabel = btn.getText();
+
+                    if (TicketManager.isSeatTaken(sessionSelected, seatLabel)) {
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "Seat " + seatLabel + " is already taken.",
+                                "Seat Error",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                        continue;
+                    }
+                    Ticket ticket = new Ticket(clientName, clientDoc, paymentMethod, seatLabel, selectedType, sessionSelected);
+
+                    TicketManager.addTicket(ticket);
+
+                    btn.setEnabled(false);
+                    btn.setSelected(false);
+                    btn.setBackground(UIManager.getColor("Button.background"));
+                }
+            }
+
+            clientNameInput.setText("");
+            clientDocIdentifInput.setText("");
+            updatePriceLabel();
+
+            // Cerramos la ventana tras compra exitosa
+            dispose();
         });
+    }
+
+    public void loadSession(Session newSession) {
+        this.sessionSelected = newSession;
+
+        roomSession.setText(sessionSelected.getRoom().getName());
+        dateSession.setText(sessionSelected.getSchedule());
+        movieName.setText(sessionSelected.getMovie().getTitle());
+
+        // Limpiamos asientos viejos
+        seatSelection.removeAll();
+        seatButtons.clear();
+
+        initializeSeatSelector();
+
+        updatePriceLabel();
+
+        seatSelection.revalidate();
+        seatSelection.repaint();
     }
 
     private void initializeSeatSelector() {
@@ -151,10 +189,12 @@ public class BuyTickets extends JFrame {
                     } else {
                         seatButton.setBackground(null);
                     }
-
                     updatePriceLabel();
                 });
 
+                if (TicketManager.isSeatTaken(sessionSelected, seatLabel)) {
+                    seatButton.setEnabled(false);
+                }
 
                 seatButtons.add(seatButton);
                 seatSelection.add(seatButton);
@@ -181,7 +221,4 @@ public class BuyTickets extends JFrame {
             priceTag.setText(String.format("%.2f €", totalPrice));
         }
     }
-
-
-
 }

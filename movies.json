@@ -37,7 +37,7 @@
   },
   {
     "movieId": 0,
-    "title": "Parasite2",
+    "title": "Parasite",
     "description": "South Korean thriller about social inequality",
     "duration": 132,
     "genre": "THRILLER",
@@ -55,7 +55,7 @@
   },
   {
     "movieId": 0,
-    "title": "Interstellar 2",
+    "title": "Interstellar",
     "description": "Epic space travel and human survival",
     "duration": 169,
     "genre": "SCI_FI",

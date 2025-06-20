@@ -1,10 +1,13 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
+import pt.ipleiria.estg.dei.ei.esoft.DataStore;
 import pt.ipleiria.estg.dei.ei.esoft.models.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BuyTickets extends JFrame {
@@ -40,6 +43,9 @@ public class BuyTickets extends JFrame {
     private static final int COLUMNS = 5;
     private final List<JToggleButton> seatButtons = new ArrayList<>();
 
+    // Para generar un número de recibo simple
+    private static int receiptCounter = 1;
+
     public BuyTickets(Session session) {
         this.sessionSelected = session;
         setTitle("Buy Tickets");
@@ -50,6 +56,7 @@ public class BuyTickets extends JFrame {
         // Inicializa UI con la sesión y sus asientos
         loadSession(session);
 
+        // Rellenar tipos de ticket
         for (TicketType type : TicketType.values()) {
             ticketTypeCombo.addItem(type);
         }
@@ -61,7 +68,6 @@ public class BuyTickets extends JFrame {
 
         addProduct.addActionListener(e -> {
             BuyProduct buyProduct = new BuyProduct();
-
             JFrame productFrame = new JFrame("Buy Product");
             productFrame.setContentPane(buyProduct.getPanel());
             productFrame.pack();
@@ -103,7 +109,7 @@ public class BuyTickets extends JFrame {
             if (!seatSelected) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "You have to chose at least one seat.",
+                        "You have to choose at least one seat.",
                         "No seat selected",
                         JOptionPane.WARNING_MESSAGE
                 );
@@ -113,7 +119,7 @@ public class BuyTickets extends JFrame {
             if (paymentMethod == null || paymentMethod.isEmpty()) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "You have to chose at least one payment method.",
+                        "You have to choose a payment method.",
                         "No payment method selected",
                         JOptionPane.WARNING_MESSAGE
                 );
@@ -122,6 +128,10 @@ public class BuyTickets extends JFrame {
 
             TicketType selectedType = (TicketType) ticketTypeCombo.getSelectedItem();
 
+            // Crear recibo con contador y fecha actual
+            Receipt receipt = new Receipt(receiptCounter++, new Date(), clientName, clientDoc);
+
+            // Agregar tickets e items al recibo
             for (JToggleButton btn : seatButtons) {
                 if (btn.isSelected()) {
                     String seatLabel = btn.getText();
@@ -135,9 +145,17 @@ public class BuyTickets extends JFrame {
                         );
                         continue;
                     }
-                    Ticket ticket = new Ticket(clientName, clientDoc, paymentMethod, seatLabel, selectedType, sessionSelected);
 
+                    Ticket ticket = new Ticket(clientName, clientDoc, paymentMethod, seatLabel, selectedType, sessionSelected);
                     TicketManager.addTicket(ticket);
+
+                    ReceiptItem item = new ReceiptItem(
+                            seatLabel,
+                            1,
+                            "Ticket " + seatLabel + " - " + selectedType.toString(),
+                            BigDecimal.valueOf(sessionSelected.calculatePrice(selectedType))
+                    );
+                    receipt.addItem(item);
 
                     btn.setEnabled(false);
                     btn.setSelected(false);
@@ -145,11 +163,19 @@ public class BuyTickets extends JFrame {
                 }
             }
 
+            // Asociar recibo a usuario logueado
+            User currentUser = SessionManager.getCurrentUser();
+            if (currentUser != null) {
+                currentUser.addReceipt(receipt);
+            }
+
+            DataStore.getInstance().addReceipt(receipt);
+
             clientNameInput.setText("");
             clientDocIdentifInput.setText("");
             updatePriceLabel();
 
-            // Cerramos la ventana tras compra exitosa
+            // Cerrar ventana de compra
             dispose();
         });
     }
@@ -161,7 +187,6 @@ public class BuyTickets extends JFrame {
         dateSession.setText(sessionSelected.getSchedule());
         movieName.setText(sessionSelected.getMovie().getTitle());
 
-        // Limpiamos asientos viejos
         seatSelection.removeAll();
         seatButtons.clear();
 

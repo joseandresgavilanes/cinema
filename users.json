@@ -29,8 +29,94 @@
     "email": "hola@gmail.com",
     "document": "123456789",
     "role": "USER",
-    "tickets": [],
-    "receipts": []
+    "tickets": [
+      {
+        "price": 6.0,
+        "seat": "E6",
+        "date": "Jun 20, 2025, 6:48:30 PM",
+        "hour": "21:30"
+      },
+      {
+        "price": 6.0,
+        "seat": "C5",
+        "date": "Jun 20, 2025, 6:52:30 PM",
+        "hour": "21:30"
+      },
+      {
+        "price": 6.0,
+        "seat": "D4",
+        "date": "Jun 20, 2025, 6:52:40 PM",
+        "hour": "21:30"
+      },
+      {
+        "price": 6.0,
+        "seat": "C5",
+        "date": "Jun 20, 2025, 6:53:12 PM",
+        "hour": "21:30"
+      },
+      {
+        "price": 6.0,
+        "seat": "B5",
+        "date": "Jun 20, 2025, 6:59:34 PM",
+        "hour": "21:30"
+      },
+      {
+        "price": 3.5,
+        "seat": "D6",
+        "date": "Jun 20, 2025, 7:05:53 PM",
+        "hour": "21:30"
+      },
+      {
+        "price": 10.0,
+        "seat": "C4",
+        "date": "Jun 20, 2025, 7:08:58 PM",
+        "hour": "21:30"
+      }
+    ],
+    "receipts": [
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 20, 2025, 6:48:30 PM",
+        "clientName": "hola",
+        "clientDocument": "123456789"
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 20, 2025, 6:52:30 PM",
+        "clientName": "hola",
+        "clientDocument": "123456789"
+      },
+      {
+        "receiptNumber": 2,
+        "dateTime": "Jun 20, 2025, 6:52:40 PM",
+        "clientName": "hola",
+        "clientDocument": "123456789"
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 20, 2025, 6:53:12 PM",
+        "clientName": "hola",
+        "clientDocument": "123456789"
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 20, 2025, 6:59:34 PM",
+        "clientName": "hola",
+        "clientDocument": "123456789"
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 20, 2025, 7:05:53 PM",
+        "clientName": "hola",
+        "clientDocument": "123456789"
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 20, 2025, 7:08:58 PM",
+        "clientName": "hola",
+        "clientDocument": "123456789"
+      }
+    ]
   },
   {
     "userId": 0,

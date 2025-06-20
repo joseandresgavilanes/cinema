@@ -26,6 +26,7 @@ public class ShowMoviePanel extends JPanel {
         add(lblPhoto, BorderLayout.WEST);
 
         lblTitle.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblTitle.setFont(new Font("SansSerif", Font.BOLD, 20));
         lblTitle.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         lblDescription.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -47,7 +48,7 @@ public class ShowMoviePanel extends JPanel {
         add(MoviePanel, BorderLayout.CENTER);
 
         BuyButton.addActionListener(e -> {
-            BuyTickets ventana = new BuyTickets(session);
+            SelectTickets  ventana = new SelectTickets ();
             ventana.setVisible(true);
         });
 

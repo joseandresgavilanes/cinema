@@ -119,11 +119,10 @@ public class ShowSession extends JFrame {
                 ticketsWindow.setVisible(true);
             });
 
-            // Future implementation
-//            receiptsButton.addActionListener(e -> {
-//                ShowReceipts receiptsWindow = new ShowReceipts();
-//                receiptsWindow.setVisible(true);
-//            });
+            receiptsButton.addActionListener(e -> {
+                ListReceipts listReceipts = new ListReceipts();
+                listReceipts.setVisible(true);
+            });
 
             Navbar.add(ticketsButton);
             Navbar.add(receiptsButton);

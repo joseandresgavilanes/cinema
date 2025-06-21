@@ -1,12 +1,13 @@
 package pt.ipleiria.estg.dei.ei.esoft.models;
 
+import java.util.Objects;
+
 public class Session {
     private int sessionId;
     private String name;
     private Movie movie;
     private Room room;
     private String schedule;
-
 
     public Session(String name, Movie movie, Room room, String schedule) {
         this.name = name;
@@ -76,5 +77,29 @@ public class Session {
 
     public void setSchedule(String schedule) {
         this.schedule = schedule;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Session)) return false;
+        Session session = (Session) o;
+        return sessionId == session.sessionId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sessionId);
+    }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "sessionId=" + sessionId +
+                ", name='" + name + '\'' +
+                ", movie=" + (movie != null ? movie.getTitle() : "null") +
+                ", room=" + (room != null ? room.getName() : "null") +
+                ", schedule='" + schedule + '\'' +
+                '}';
     }
 }

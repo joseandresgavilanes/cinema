@@ -1,12 +1,13 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
-import pt.ipleiria.estg.dei.ei.esoft.models.Session;
-import pt.ipleiria.estg.dei.ei.esoft.models.SessionManager;
-import pt.ipleiria.estg.dei.ei.esoft.models.TicketType;
+import pt.ipleiria.estg.dei.ei.esoft.DataStore;
+import pt.ipleiria.estg.dei.ei.esoft.models.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BuyTickets extends JFrame {
@@ -42,31 +43,31 @@ public class BuyTickets extends JFrame {
     private static final int COLUMNS = 5;
     private final List<JToggleButton> seatButtons = new ArrayList<>();
 
+    // Para generar un número de recibo simple
+    private static int receiptCounter = 1;
+
     public BuyTickets(Session session) {
         this.sessionSelected = session;
         setTitle("Buy Tickets");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setContentPane(buyTicketsPanel);
-        roomSession.setText(session.getRoom().getName());
-        dateSession.setText(session.getSchedule());
-        movieName.setText(session.getMovie().getTitle());
+
+        // Inicializa UI con la sesión y sus asientos
+        loadSession(session);
+
+        // Rellenar tipos de ticket
         for (TicketType type : TicketType.values()) {
             ticketTypeCombo.addItem(type);
         }
-
         ticketTypeCombo.setSelectedIndex(0);
         updatePriceLabel();
-
         ticketTypeCombo.addActionListener(e -> updatePriceLabel());
-
-        initializeSeatSelector();
 
         setVisible(true);
 
         addProduct.addActionListener(e -> {
             BuyProduct buyProduct = new BuyProduct();
-
             JFrame productFrame = new JFrame("Buy Product");
             productFrame.setContentPane(buyProduct.getPanel());
             productFrame.pack();
@@ -108,7 +109,7 @@ public class BuyTickets extends JFrame {
             if (!seatSelected) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "You have to chose at least one seat.",
+                        "You have to choose at least one seat.",
                         "No seat selected",
                         JOptionPane.WARNING_MESSAGE
                 );
@@ -118,21 +119,83 @@ public class BuyTickets extends JFrame {
             if (paymentMethod == null || paymentMethod.isEmpty()) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "You have to chose at least one payment method.",
+                        "You have to choose a payment method.",
                         "No payment method selected",
                         JOptionPane.WARNING_MESSAGE
                 );
                 return;
             }
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Purchase completed.",
-                    "Purchase completed",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+            TicketType selectedType = (TicketType) ticketTypeCombo.getSelectedItem();
 
+            // Crear recibo con contador y fecha actual
+            Receipt receipt = new Receipt(receiptCounter++, new Date(), clientName, clientDoc);
+
+            // Agregar tickets e items al recibo
+            for (JToggleButton btn : seatButtons) {
+                if (btn.isSelected()) {
+                    String seatLabel = btn.getText();
+
+                    if (TicketManager.isSeatTaken(sessionSelected, seatLabel)) {
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "Seat " + seatLabel + " is already taken.",
+                                "Seat Error",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                        continue;
+                    }
+
+                    Ticket ticket = new Ticket(clientName, clientDoc, paymentMethod, seatLabel, selectedType, sessionSelected);
+                    TicketManager.addTicket(ticket);
+
+                    ReceiptItem item = new ReceiptItem(
+                            seatLabel,
+                            1,
+                            "Ticket " + seatLabel + " - " + selectedType.toString(),
+                            BigDecimal.valueOf(sessionSelected.calculatePrice(selectedType))
+                    );
+                    receipt.addItem(item);
+
+                    btn.setEnabled(false);
+                    btn.setSelected(false);
+                    btn.setBackground(UIManager.getColor("Button.background"));
+                }
+            }
+
+            // Asociar recibo a usuario logueado
+            User currentUser = SessionManager.getCurrentUser();
+            if (currentUser != null) {
+                currentUser.addReceipt(receipt);
+            }
+
+            DataStore.getInstance().addReceipt(receipt);
+
+            clientNameInput.setText("");
+            clientDocIdentifInput.setText("");
+            updatePriceLabel();
+
+            // Cerrar ventana de compra
+            dispose();
         });
+    }
+
+    public void loadSession(Session newSession) {
+        this.sessionSelected = newSession;
+
+        roomSession.setText(sessionSelected.getRoom().getName());
+        dateSession.setText(sessionSelected.getSchedule());
+        movieName.setText(sessionSelected.getMovie().getTitle());
+
+        seatSelection.removeAll();
+        seatButtons.clear();
+
+        initializeSeatSelector();
+
+        updatePriceLabel();
+
+        seatSelection.revalidate();
+        seatSelection.repaint();
     }
 
     private void initializeSeatSelector() {
@@ -151,10 +214,12 @@ public class BuyTickets extends JFrame {
                     } else {
                         seatButton.setBackground(null);
                     }
-
                     updatePriceLabel();
                 });
 
+                if (TicketManager.isSeatTaken(sessionSelected, seatLabel)) {
+                    seatButton.setEnabled(false);
+                }
 
                 seatButtons.add(seatButton);
                 seatSelection.add(seatButton);
@@ -181,7 +246,4 @@ public class BuyTickets extends JFrame {
             priceTag.setText(String.format("%.2f €", totalPrice));
         }
     }
-
-
-
 }

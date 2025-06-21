@@ -1,4 +1,3 @@
-// DataStore.java
 package pt.ipleiria.estg.dei.ei.esoft;
 
 import pt.ipleiria.estg.dei.ei.esoft.models.*;
@@ -12,7 +11,8 @@ public class DataStore {
     private final List<Session> sessions = new ArrayList<>();
     private final List<Room>    rooms    = new ArrayList<>();
     private final List<Product> products = new ArrayList<>();
-    private final List<User>     users     = new ArrayList<>();
+    private final List<User>    users    = new ArrayList<>();
+    private final List<Receipt> receipts = new ArrayList<>();
 
     static {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -32,18 +32,20 @@ public class DataStore {
     }
 
     private void loadData() {
-        List<Movie>   lm = DataPersistence.loadMovies();
+        List<Movie> lm = DataPersistence.loadMovies();
         List<Session> ls = DataPersistence.loadSessions();
-        List<Room>    lr = DataPersistence.loadRooms();
+        List<Room> lr = DataPersistence.loadRooms();
         List<Product> lp = DataPersistence.loadProducts();
-        List<User>    lu = DataPersistence.loadUsers();
+        List<User> lu = DataPersistence.loadUsers();
+        List<Receipt> lrc = DataPersistence.loadReceipts();
 
-        if (lm != null && ls != null && lr != null && lp != null && lu != null) {
+        if (lm != null && ls != null && lr != null && lp != null && lu != null && lrc != null) {
             movies.addAll(lm);
             sessions.addAll(ls);
             rooms.addAll(lr);
             products.addAll(lp);
             users.addAll(lu);
+            receipts.addAll(lrc);
         } else {
             loadDummyData();
             saveAll();
@@ -56,6 +58,7 @@ public class DataStore {
         DataPersistence.saveRooms(rooms);
         DataPersistence.saveProducts(products);
         DataPersistence.saveUsers(users);
+        DataPersistence.saveReceipts(receipts);
     }
 
     private void loadDummyData() {
@@ -100,16 +103,15 @@ public class DataStore {
         users.get(1).setRole(UserRole.USER);
     }
 
-
-
-    // —— Getters in sólo lectura —— //
+    // —— Getters —— //
     public List<Movie>   getMovies()   { return Collections.unmodifiableList(movies); }
     public List<Session> getSessions() { return Collections.unmodifiableList(sessions); }
     public List<Room>    getRooms()    { return Collections.unmodifiableList(rooms); }
     public List<Product> getProducts() { return Collections.unmodifiableList(products); }
-    public List<User>    getUsers()    { return Collections.unmodifiableList(users); }  // nuevo
+    public List<User>    getUsers()    { return Collections.unmodifiableList(users); }
+    public List<Receipt> getReceipts() { return Collections.unmodifiableList(receipts); }
 
-    // —— Métodos de añadido que persisten al instante —— //
+    // —— Methods —— //
     public void addMovie(Movie m) {
         movies.add(m);
         DataPersistence.saveMovies(movies);
@@ -126,20 +128,37 @@ public class DataStore {
         products.add(p);
         DataPersistence.saveProducts(products);
     }
-
     public void addUser(User u) {
         users.add(u);
         DataPersistence.saveUsers(users);
     }
 
+    // Receipt
+    public void addReceipt(Receipt r, User u) {
+        receipts.add(r);
+        u.addReceipt(r);
+        DataPersistence.saveReceipts(receipts);
+        DataPersistence.saveUsers(users);
+    }
+
+//    // Receipt original
+    public void addReceipt(Receipt r) {
+        receipts.add(r);
+        DataPersistence.saveReceipts(receipts);
+    }
+
+    // —— Remove methods —— //
     public void removeSession(Session s) {
         sessions.remove(s);
         DataPersistence.saveSessions(sessions);
     }
-
     public void removeMovie(Movie m) {
         movies.remove(m);
         DataPersistence.saveMovies(movies);
+    }
+    public void removeReceipt(Receipt r) {
+        receipts.remove(r);
+        DataPersistence.saveReceipts(receipts);
     }
 
     public void removeProduct(Product p) {
@@ -147,15 +166,14 @@ public class DataStore {
 
     }
 
+    // —— Update methods —— //
     public void updateSession(Session s) {
         DataPersistence.saveSessions(sessions);
     }
-
-
     public void updateMovie(Movie m) {
         DataPersistence.saveMovies(movies);
     }
-
-
-
+    public void updateReceipt(Receipt r) {
+        DataPersistence.saveReceipts(receipts);
+    }
 }

@@ -5,15 +5,16 @@ import pt.ipleiria.estg.dei.ei.esoft.models.*;
 import javax.swing.*;
 import java.awt.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class PaymentWindow extends JFrame {
     private final Session session;
     private final Map<TicketType, Integer> selectedTickets;
     private final List<String> selectedSeats;
+    private final Map<Product, Integer> selectedProducts = new HashMap<>();
     private final JButton payButton = new JButton("Pay");
+    private final JTextArea summaryArea = new JTextArea();
 
     public PaymentWindow(Session session, Map<TicketType, Integer> selectedTickets, List<String> selectedSeats) {
         this.session = session;
@@ -21,18 +22,50 @@ public class PaymentWindow extends JFrame {
         this.selectedSeats = selectedSeats;
 
         setTitle("Payment");
-        setSize(550, 450);
+        setSize(550, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        JTextArea summaryArea = new JTextArea();
         summaryArea.setEditable(false);
         summaryArea.setBackground(Color.BLACK);
         summaryArea.setForeground(Color.WHITE);
         summaryArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        updateSummary();
 
-        double total = 0.0;
+        // Pay button logic
+        payButton.addActionListener(e -> handlePayment());
+
+        JButton addProductButton = new JButton("Add Products");
+        addProductButton.addActionListener(e -> {
+            ProductSelectionDialog dialog = new ProductSelectionDialog(this);
+            dialog.setVisible(true);
+
+            Map<Product, Integer> newlySelected = dialog.getSelectedProducts();
+
+            for (Map.Entry<Product, Integer> entry : newlySelected.entrySet()) {
+                selectedProducts.merge(entry.getKey(), entry.getValue(), Integer::sum);
+            }
+
+            updateSummary();
+        });
+
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(Color.BLACK);
+        buttonPanel.add(addProductButton);
+        buttonPanel.add(payButton);
+
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(Color.BLACK);
+        mainPanel.add(new JScrollPane(summaryArea), BorderLayout.CENTER);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        setContentPane(mainPanel);
+    }
+
+    private void updateSummary() {
         StringBuilder sb = new StringBuilder();
+        double total = 0.0;
 
         if (SessionManager.isLoggedIn()) {
             sb.append(" Client: ").append(SessionManager.getCurrentUser().getUsername()).append("\n\n");
@@ -47,30 +80,22 @@ public class PaymentWindow extends JFrame {
             total += subtotal;
         }
 
-        sb.append("\n🚺 Selected Seats:\n");
+        sb.append("\n Selected Seats:\n");
         selectedSeats.stream().sorted().forEach(seat -> sb.append(" - ").append(seat).append("\n"));
+
+        if (!selectedProducts.isEmpty()) {
+            sb.append("\n🛍 Products:\n");
+            for (Map.Entry<Product, Integer> entry : selectedProducts.entrySet()) {
+                Product p = entry.getKey();
+                int qty = entry.getValue();
+                double subtotal = p.getPrice() * qty;
+                sb.append(String.format(" - %s x %d = %.2f €\n", p.getName(), qty, subtotal));
+                total += subtotal;
+            }
+        }
+
         sb.append(String.format("\n💰 Total to pay: %.2f €\n", total));
         summaryArea.setText(sb.toString());
-
-        // Pay button logic
-        payButton.addActionListener(e -> handlePayment());
-
-        JButton addProductButton = new JButton("Add Products");
-        addProductButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "This functionality will be available soon.", "Info", JOptionPane.INFORMATION_MESSAGE);
-        });
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(Color.BLACK);
-        buttonPanel.add(addProductButton);
-        buttonPanel.add(payButton);
-
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(Color.BLACK);
-        mainPanel.add(new JScrollPane(summaryArea), BorderLayout.CENTER);
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-        setContentPane(mainPanel);
     }
 
     private void handlePayment() {
@@ -87,25 +112,32 @@ public class PaymentWindow extends JFrame {
         }
 
         User user = SessionManager.getCurrentUser();
-        String paymentMethod = "Tarjeta";
+        String paymentMethod = "Card";
 
         try {
             List<Ticket> tickets = TicketManager.buyTickets(session, selectedTickets, selectedSeats, user, paymentMethod);
             Receipt receipt = new Receipt(TicketManager.getTickets().size(), new Date(), user.getUsername(), user.getDocument());
 
+            // Tickets
             for (Ticket ticket : tickets) {
                 String seat = ticket.getSeat();
                 TicketType type = ticket.getTicketType();
                 String description = "Ticket for seat " + seat + " - " + type.toString();
                 BigDecimal unitPrice = BigDecimal.valueOf(type.getBasePrice());
-                ReceiptItem item = new ReceiptItem(seat, 1, description, unitPrice);
-                receipt.addItem(item);
+                receipt.addItem(new ReceiptItem(seat, 1, description, unitPrice));
+            }
+
+            // Products
+            for (Map.Entry<Product, Integer> entry : selectedProducts.entrySet()) {
+                Product p = entry.getKey();
+                int qty = entry.getValue();
+                receipt.addItem(new ReceiptItem(p.getName(), qty, "Product: " + p.getName(), BigDecimal.valueOf(p.getPrice())));
             }
 
             user.addReceipt(receipt);
-
             JOptionPane.showMessageDialog(this, "✅ Payment completed successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
+
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Payment Error", JOptionPane.ERROR_MESSAGE);
         }

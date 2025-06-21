@@ -1,0 +1,22 @@
+[
+  {
+    "userId": 0,
+    "username": "admin",
+    "password": "admin123",
+    "email": "admin@cine.com",
+    "document": "00000000A",
+    "role": "ADMIN",
+    "tickets": [],
+    "receipts": []
+  },
+  {
+    "userId": 0,
+    "username": "juan",
+    "password": "juanpwd",
+    "email": "juan@mail.com",
+    "document": "12345678B",
+    "role": "USER",
+    "tickets": [],
+    "receipts": []
+  }
+]

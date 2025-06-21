@@ -12,7 +12,7 @@ public class PaymentWindow extends JFrame {
     private final Session session;
     private final Map<TicketType, Integer> selectedTickets;
     private final List<String> selectedSeats;
-    private final Map<Product, Integer> selectedProducts = new HashMap<>();
+    private Map<Product, Integer> selectedProducts = new HashMap<>();
     private final JButton payButton = new JButton("Pay");
     private final JTextArea summaryArea = new JTextArea();
 
@@ -20,6 +20,9 @@ public class PaymentWindow extends JFrame {
         this.session = session;
         this.selectedTickets = selectedTickets;
         this.selectedSeats = selectedSeats;
+
+        // Restaura productos si venimos del login
+        this.selectedProducts = TemporaryProductStore.getSelectedProducts();
 
         setTitle("Payment");
         setSize(550, 500);
@@ -32,7 +35,6 @@ public class PaymentWindow extends JFrame {
         summaryArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         updateSummary();
 
-        // Pay button logic
         payButton.addActionListener(e -> handlePayment());
 
         JButton addProductButton = new JButton("Add Products");
@@ -41,14 +43,14 @@ public class PaymentWindow extends JFrame {
             dialog.setVisible(true);
 
             Map<Product, Integer> newlySelected = dialog.getSelectedProducts();
-
             for (Map.Entry<Product, Integer> entry : newlySelected.entrySet()) {
                 selectedProducts.merge(entry.getKey(), entry.getValue(), Integer::sum);
             }
 
+            // Guarda productos temporalmente por si va a login
+            TemporaryProductStore.setSelectedProducts(selectedProducts);
             updateSummary();
         });
-
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.BLACK);
@@ -100,6 +102,7 @@ public class PaymentWindow extends JFrame {
 
     private void handlePayment() {
         if (!SessionManager.isLoggedIn()) {
+            TemporaryProductStore.setSelectedProducts(selectedProducts);  // guarda antes del login
             Login loginWindow = new Login(() -> {
                 this.dispose();
                 SwingUtilities.invokeLater(() -> {
@@ -118,7 +121,6 @@ public class PaymentWindow extends JFrame {
             List<Ticket> tickets = TicketManager.buyTickets(session, selectedTickets, selectedSeats, user, paymentMethod);
             Receipt receipt = new Receipt(TicketManager.getTickets().size(), new Date(), user.getUsername(), user.getDocument());
 
-            // Tickets
             for (Ticket ticket : tickets) {
                 String seat = ticket.getSeat();
                 TicketType type = ticket.getTicketType();
@@ -127,7 +129,6 @@ public class PaymentWindow extends JFrame {
                 receipt.addItem(new ReceiptItem(seat, 1, description, unitPrice));
             }
 
-            // Products
             for (Map.Entry<Product, Integer> entry : selectedProducts.entrySet()) {
                 Product p = entry.getKey();
                 int qty = entry.getValue();
@@ -135,6 +136,7 @@ public class PaymentWindow extends JFrame {
             }
 
             user.addReceipt(receipt);
+            TemporaryProductStore.clear(); // limpia cache
             JOptionPane.showMessageDialog(this, "✅ Payment completed successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
 

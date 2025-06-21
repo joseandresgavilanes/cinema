@@ -128,6 +128,62 @@
           },
           "schedule": "2025-05-20 18:00"
         }
+      },
+      {
+        "clientName": "juan",
+        "clientDoc": "12345678B",
+        "paymentMethod": "Card",
+        "seat": "E7",
+        "ticketType": "STANDARD",
+        "session": {
+          "sessionId": 0,
+          "name": "Matrix – Room 1 (18:00)",
+          "movie": {
+            "movieId": 0,
+            "title": "Matrix",
+            "description": "Classic science fiction",
+            "duration": 136,
+            "genre": "SCI_FI",
+            "language": "ENGLISH",
+            "imagePath": "/images/matrix_movie.png"
+          },
+          "room": {
+            "roomId": 0,
+            "name": "Room 1",
+            "capacity": 50,
+            "accessibility": true,
+            "soundSystem": "DOLBY_ATMOS"
+          },
+          "schedule": "2025-05-20 18:00"
+        }
+      },
+      {
+        "clientName": "juan",
+        "clientDoc": "12345678B",
+        "paymentMethod": "Card",
+        "seat": "E7",
+        "ticketType": "STANDARD",
+        "session": {
+          "sessionId": 0,
+          "name": "Matrix – Room 1 (18:00)",
+          "movie": {
+            "movieId": 0,
+            "title": "Matrix",
+            "description": "Classic science fiction",
+            "duration": 136,
+            "genre": "SCI_FI",
+            "language": "ENGLISH",
+            "imagePath": "/images/matrix_movie.png"
+          },
+          "room": {
+            "roomId": 0,
+            "name": "Room 1",
+            "capacity": 50,
+            "accessibility": true,
+            "soundSystem": "DOLBY_ATMOS"
+          },
+          "schedule": "2025-05-20 18:00"
+        }
       }
     ],
     "receipts": [
@@ -232,6 +288,58 @@
             "quantity": 1,
             "description": "Product: Iced Tea",
             "singlePrice": 2.0
+          }
+        ]
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 21, 2025, 11:05:31 PM",
+        "clientName": "juan",
+        "clientDocument": "12345678B",
+        "items": [
+          {
+            "productID": "E7",
+            "quantity": 1,
+            "description": "Ticket for seat E7 - Standard",
+            "singlePrice": 6.0
+          },
+          {
+            "productID": "Popcorn",
+            "quantity": 1,
+            "description": "Product: Popcorn",
+            "singlePrice": 2.5
+          },
+          {
+            "productID": "Soda",
+            "quantity": 1,
+            "description": "Product: Soda",
+            "singlePrice": 1.75
+          }
+        ]
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 21, 2025, 11:09:07 PM",
+        "clientName": "juan",
+        "clientDocument": "12345678B",
+        "items": [
+          {
+            "productID": "E7",
+            "quantity": 1,
+            "description": "Ticket for seat E7 - Standard",
+            "singlePrice": 6.0
+          },
+          {
+            "productID": "Popcorn",
+            "quantity": 1,
+            "description": "Product: Popcorn",
+            "singlePrice": 2.5
+          },
+          {
+            "productID": "Soda",
+            "quantity": 1,
+            "description": "Product: Soda",
+            "singlePrice": 1.75
           }
         ]
       }

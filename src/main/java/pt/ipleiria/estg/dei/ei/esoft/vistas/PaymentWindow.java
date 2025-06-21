@@ -12,17 +12,17 @@ public class PaymentWindow extends JFrame {
     private final Session session;
     private final Map<TicketType, Integer> selectedTickets;
     private final List<String> selectedSeats;
-    private Map<Product, Integer> selectedProducts = new HashMap<>();
+    private final Map<Product, Integer> selectedProducts = TemporaryProductStore.getSelectedProducts();
+
     private final JButton payButton = new JButton("Pay");
     private final JTextArea summaryArea = new JTextArea();
+
+    private Combo appliedCombo = null;
 
     public PaymentWindow(Session session, Map<TicketType, Integer> selectedTickets, List<String> selectedSeats) {
         this.session = session;
         this.selectedTickets = selectedTickets;
         this.selectedSeats = selectedSeats;
-
-        // Restaura productos si venimos del login
-        this.selectedProducts = TemporaryProductStore.getSelectedProducts();
 
         setTitle("Payment");
         setSize(550, 500);
@@ -43,11 +43,11 @@ public class PaymentWindow extends JFrame {
             dialog.setVisible(true);
 
             Map<Product, Integer> newlySelected = dialog.getSelectedProducts();
+
             for (Map.Entry<Product, Integer> entry : newlySelected.entrySet()) {
                 selectedProducts.merge(entry.getKey(), entry.getValue(), Integer::sum);
             }
 
-            // Guarda productos temporalmente por si va a login
             TemporaryProductStore.setSelectedProducts(selectedProducts);
             updateSummary();
         });
@@ -64,23 +64,6 @@ public class PaymentWindow extends JFrame {
 
         setContentPane(mainPanel);
     }
-    private double calculateDiscountedTicketTotal() {
-        double total = 0.0;
-
-        for (Map.Entry<TicketType, Integer> entry : selectedTickets.entrySet()) {
-            double base = entry.getKey().getBasePrice();
-            int qty = entry.getValue();
-            total += base * qty;
-        }
-
-        // Si hay productos y tickets => aplica 10% descuento
-        if (!selectedProducts.isEmpty() && !selectedTickets.isEmpty()) {
-            total *= 0.9;  // 10% descuento
-        }
-
-        return total;
-    }
-
 
     private void updateSummary() {
         StringBuilder sb = new StringBuilder();
@@ -93,17 +76,15 @@ public class PaymentWindow extends JFrame {
         }
 
         sb.append(" Selected Tickets:\n");
-        double ticketSubtotal = 0.0;
         for (Map.Entry<TicketType, Integer> entry : selectedTickets.entrySet()) {
             double subtotal = entry.getKey().getBasePrice() * entry.getValue();
             sb.append(String.format(" - %-8s x %d = %.2f €\n", entry.getKey(), entry.getValue(), subtotal));
-            ticketSubtotal += subtotal;
+            total += subtotal;
         }
 
         sb.append("\n Selected Seats:\n");
         selectedSeats.stream().sorted().forEach(seat -> sb.append(" - ").append(seat).append("\n"));
 
-        double productSubtotal = 0.0;
         if (!selectedProducts.isEmpty()) {
             sb.append("\n🛍 Products:\n");
             for (Map.Entry<Product, Integer> entry : selectedProducts.entrySet()) {
@@ -111,25 +92,49 @@ public class PaymentWindow extends JFrame {
                 int qty = entry.getValue();
                 double subtotal = p.getPrice() * qty;
                 sb.append(String.format(" - %s x %d = %.2f €\n", p.getName(), qty, subtotal));
-                productSubtotal += subtotal;
+                total += subtotal;
             }
         }
 
-        boolean combo = !selectedProducts.isEmpty() && !selectedTickets.isEmpty();
-        if (combo) {
-            sb.append(String.format("\n🎁 Combo discount applied: -%.2f €", ticketSubtotal * 0.10));
-            ticketSubtotal *= 0.9; // apply discount
+        // Check and apply combo
+        List<Combo> matchingCombos = ComboEvaluator.findMatchingCombos(selectedTickets, selectedProducts);
+        if (matchingCombos.size() == 1) {
+            appliedCombo = matchingCombos.get(0);
+        } else if (matchingCombos.size() > 1) {
+            appliedCombo = selectComboManually(matchingCombos);
         }
 
-        total = ticketSubtotal + productSubtotal;
+        if (appliedCombo != null) {
+            double discounted = appliedCombo.getDiscountedPrice();
+            sb.append("\n🎁 Combo: ").append(appliedCombo.getName())
+                    .append(String.format("\n💸 Discounted total: %.2f €", discounted));
+            total = discounted;
+        }
+
         sb.append(String.format("\n\n💰 Total to pay: %.2f €\n", total));
         summaryArea.setText(sb.toString());
     }
 
+    private Combo selectComboManually(List<Combo> combos) {
+        String[] options = combos.stream().map(Combo::getName).toArray(String[]::new);
+        String selected = (String) JOptionPane.showInputDialog(
+                this,
+                "Select a combo to apply:",
+                "Combo Selection",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        return combos.stream()
+                .filter(c -> c.getName().equals(selected))
+                .findFirst()
+                .orElse(null);
+    }
 
     private void handlePayment() {
         if (!SessionManager.isLoggedIn()) {
-            TemporaryProductStore.setSelectedProducts(selectedProducts);  // guarda antes del login
             Login loginWindow = new Login(() -> {
                 this.dispose();
                 SwingUtilities.invokeLater(() -> {
@@ -148,6 +153,7 @@ public class PaymentWindow extends JFrame {
             List<Ticket> tickets = TicketManager.buyTickets(session, selectedTickets, selectedSeats, user, paymentMethod);
             Receipt receipt = new Receipt(TicketManager.getTickets().size(), new Date(), user.getUsername(), user.getDocument());
 
+            // Add tickets
             for (Ticket ticket : tickets) {
                 String seat = ticket.getSeat();
                 TicketType type = ticket.getTicketType();
@@ -156,6 +162,7 @@ public class PaymentWindow extends JFrame {
                 receipt.addItem(new ReceiptItem(seat, 1, description, unitPrice));
             }
 
+            // Add products
             for (Map.Entry<Product, Integer> entry : selectedProducts.entrySet()) {
                 Product p = entry.getKey();
                 int qty = entry.getValue();
@@ -163,7 +170,8 @@ public class PaymentWindow extends JFrame {
             }
 
             user.addReceipt(receipt);
-            TemporaryProductStore.clear(); // limpia cache
+            TemporaryProductStore.clear();
+
             JOptionPane.showMessageDialog(this, "✅ Payment completed successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
 

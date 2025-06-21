@@ -1,0 +1,30 @@
+[
+  {
+    "roomId": 0,
+    "name": "Room 1",
+    "capacity": 50,
+    "accessibility": true,
+    "soundSystem": "DOLBY_ATMOS"
+  },
+  {
+    "roomId": 0,
+    "name": "Room 2",
+    "capacity": 30,
+    "accessibility": false,
+    "soundSystem": "STEREO"
+  },
+  {
+    "roomId": 0,
+    "name": "Room 3",
+    "capacity": 20,
+    "accessibility": false,
+    "soundSystem": "DTS"
+  },
+  {
+    "roomId": 0,
+    "name": "Room 4",
+    "capacity": 100,
+    "accessibility": true,
+    "soundSystem": "SURROUND"
+  }
+]

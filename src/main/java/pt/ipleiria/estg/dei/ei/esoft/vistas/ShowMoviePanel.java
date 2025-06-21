@@ -8,11 +8,11 @@ import java.util.List;
 
 public class ShowMoviePanel extends JPanel {
     private JPanel MoviePanel;
-    private JComboBox comboBox1;
     private JButton BuyButton;
     private JLabel lblTitle;
     private JLabel lblDescription;
     private JLabel lblPhoto;
+    private JLabel scheduleLabel;
     private Session session;
 
     public ShowMoviePanel(Session session) {
@@ -33,8 +33,6 @@ public class ShowMoviePanel extends JPanel {
         lblDescription.setAlignmentX(Component.LEFT_ALIGNMENT);
         lblDescription.setMaximumSize(new Dimension(800, 50));
 
-        comboBox1.setAlignmentX(Component.LEFT_ALIGNMENT);
-        comboBox1.setMaximumSize(new Dimension(200, 30));
 
         BuyButton.setBackground(new Color(229, 9, 20));
         BuyButton.setFocusPainted(false);
@@ -63,12 +61,10 @@ public class ShowMoviePanel extends JPanel {
         lblDescription.setText(descripcion);
     }
 
-    public void setHorarios(List<String> horarios) {
-        comboBox1.removeAllItems();
-        for (String h : horarios) {
-            comboBox1.addItem(h);
-        }
+    public void setSchedule(String schedule) {
+        scheduleLabel.setText(schedule);
     }
+
 
     public void setPhoto(String photoPath) {
         java.net.URL imgURL = getClass().getResource(photoPath);

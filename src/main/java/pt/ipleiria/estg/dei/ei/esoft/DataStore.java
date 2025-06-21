@@ -24,6 +24,15 @@ public class DataStore {
         loadData();
     }
 
+    private final List<Combo> combos = new ArrayList<>();
+    public List<Combo> getCombos() {
+        return Collections.unmodifiableList(combos);
+    }
+    public void addCombo(Combo c) {
+        combos.add(c);
+    }
+
+
     public static synchronized DataStore getInstance() {
         if (instance == null) {
             instance = new DataStore();

@@ -47,17 +47,27 @@ public class RoomsAdminPanel extends JFrame {
 
     private void loadRooms(DefaultTableModel model) {
         model.setRowCount(0);
-        List<Room> rooms = DataStore.getInstance().getRooms();
+        try {
+            List<Room> rooms = DataStore.getInstance().getRooms();
+            if (rooms == null || rooms.isEmpty()) {
+                JOptionPane.showMessageDialog(this,"No rooms found.","Information", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
 
-        for (Room room : rooms) {
-            model.addRow(new Object[]{
-                    room.getName(),
-                    room.getCapacity(),
-                    room.getAccessibility() ? "Yes" : "No",
-                    room.getSoundSystem().getDisplayName()
-            });
+            for (Room room : rooms) {
+                model.addRow(new Object[]{
+                        room.getName(),
+                        room.getCapacity(),
+                        room.getAccessibility() ? "Yes" : "No",
+                        room.getSoundSystem().getDisplayName()
+                });
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Error loading rooms: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new RoomsAdminPanel().setVisible(true));

@@ -9,25 +9,20 @@ public class Product {
     private String category;
     private double price;
     private String imagePath;
+    private Integer quantity;
 
-    public Product(String name, String description, String category, double price, String imagePath) {
+    // Constructor nuevo (con quantity)
+    public Product(String name, String description, String category, double price, String imagePath, Integer quantity) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.category = category;
         this.imagePath = imagePath;
+        this.quantity = quantity;
     }
 
     public String getPhoto() {
         return imagePath;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
     }
 
     public String getName() {
@@ -67,9 +62,16 @@ public class Product {
         this.imagePath = imagePath;
     }
 
+    public Integer getQuantity() {return quantity;}
+
+
     @Override
     public String toString() {
         return name;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     @Override

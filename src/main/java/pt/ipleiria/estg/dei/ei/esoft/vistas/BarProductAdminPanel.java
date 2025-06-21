@@ -1,6 +1,7 @@
 package pt.ipleiria.estg.dei.ei.esoft.vistas;
 
 import pt.ipleiria.estg.dei.ei.esoft.DataStore;
+import pt.ipleiria.estg.dei.ei.esoft.models.Movie;
 import pt.ipleiria.estg.dei.ei.esoft.models.Product;
 
 import javax.swing.*;
@@ -12,6 +13,8 @@ public class BarProductAdminPanel extends JFrame {
     private JTable productsTable;
     private JButton addProductButton;
     private JPanel mainPanel;
+    private JButton updateProductButton;
+    private JButton deleteProductButton;
 
     public BarProductAdminPanel() {
         setTitle("Bar Products Administration");
@@ -31,18 +34,58 @@ public class BarProductAdminPanel extends JFrame {
         loadProducts(tableModel);
 
         addProductButton = new JButton("Add New Product");
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.add(addProductButton);
-        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+        updateProductButton   = new JButton("Edit Selected");
+        deleteProductButton = new JButton("Delete Selected");
+        JPanel btnPanel = new JPanel();
+        btnPanel.add(addProductButton);
+        btnPanel.add(updateProductButton);
+        btnPanel.add(deleteProductButton);
+        mainPanel.add(btnPanel, BorderLayout.SOUTH);
+
 
         addProductButton.addActionListener(e -> {
             CreateProductForm createForm = new CreateProductForm(() -> {
                 loadProducts((DefaultTableModel) productsTable.getModel());
-            });
+            }, null);
             createForm.setVisible(true);
         });
 
         add(mainPanel);
+
+        updateProductButton.addActionListener(e -> {
+            int row = productsTable.getSelectedRow();
+            if (row < 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Please select a product to edit.",
+                        "No selection",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            Product p = DataStore.getInstance().getProducts().get(row);
+            new CreateProductForm(() -> loadProducts(tableModel), p)
+                    .setVisible(true);
+        });
+
+        deleteProductButton.addActionListener(e -> {
+            int row = productsTable.getSelectedRow();
+            if (row < 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Please select a product to delete.",
+                        "No selection",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (JOptionPane.showConfirmDialog(this,
+                    "Are you sure you want to delete this product?",
+                    "Confirm delete",
+                    JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) return;
+
+            Product p = DataStore.getInstance().getProducts().get(row);
+            DataStore.getInstance().removeProduct(p);
+            loadProducts(tableModel);
+        });
+
+
     }
 
     private void loadProducts(DefaultTableModel model) {

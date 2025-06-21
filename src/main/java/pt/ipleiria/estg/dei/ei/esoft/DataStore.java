@@ -89,12 +89,12 @@ public class DataStore {
         sessions.add(new Session("Interstellar – Room 4 (19:00)", m7, r4, "2025-05-23 19:00"));
 
         // —– Products —–
-        products.add(new Product("Popcorn", "Salted popcorn", ProductBarCategory.SNACK.getDisplayName(), 2.50, "/images/popcorn_product.png"));
-        products.add(new Product("Soda",    "Carbonated soft drink", ProductBarCategory.DRINK.getDisplayName(), 1.75, "/images/soda_product.png"));
-        products.add(new Product("Nachos",  "Cheesy nachos", ProductBarCategory.FOOD.getDisplayName(), 3.00, "/images/nachos_product.png"));
-        products.add(new Product("Hot Dog", "Classic hot dog with mustard", ProductBarCategory.FOOD.getDisplayName(), 3.50, "/images/hotdog_product.png"));
-        products.add(new Product("Iced Tea","Refreshing lemon iced tea", ProductBarCategory.DRINK.getDisplayName(), 2.00, "/images/icetea_product.png"));
-        products.add(new Product("Candy",   "Assorted sweets", ProductBarCategory.SNACK.getDisplayName(), 1.25, "/images/candy_product.png"));
+        products.add(new Product("Popcorn", "Salted popcorn", ProductBarCategory.SNACK.getDisplayName(), 2.50, "/images/popcorn_product.png", 10));
+        products.add(new Product("Soda",    "Carbonated soft drink", ProductBarCategory.DRINK.getDisplayName(), 1.75, "/images/soda_product.png",10));
+        products.add(new Product("Nachos",  "Cheesy nachos", ProductBarCategory.FOOD.getDisplayName(), 3.00, "/images/nachos_product.png",10));
+        products.add(new Product("Hot Dog", "Classic hot dog with mustard", ProductBarCategory.FOOD.getDisplayName(), 3.50, "/images/hotdog_product.png",10));
+        products.add(new Product("Iced Tea","Refreshing lemon iced tea", ProductBarCategory.DRINK.getDisplayName(), 2.00, "/images/icetea_product.png",10));
+        products.add(new Product("Candy",   "Assorted sweets", ProductBarCategory.SNACK.getDisplayName(), 1.25, "/images/candy_product.png",10));
 
         users.add(new User("admin", "admin123", "admin@cine.com", "00000000A"));
         users.get(0).setRole(UserRole.ADMIN);
@@ -159,6 +159,11 @@ public class DataStore {
     public void removeReceipt(Receipt r) {
         receipts.remove(r);
         DataPersistence.saveReceipts(receipts);
+    }
+
+    public void removeProduct(Product p) {
+        products.remove(p);
+
     }
 
     // —— Update methods —— //

@@ -1,6 +1,7 @@
 package pt.ipleiria.estg.dei.ei.esoft.models;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Movie {
     private int movieId;
@@ -71,6 +72,24 @@ public class Movie {
     @Override
     public String toString() {
         return title;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Movie)) return false;
+        Movie movie = (Movie) o;
+        return Objects.equals(title, movie.title)
+                && Objects.equals(description, movie.description)
+                && Objects.equals(duration, movie.duration)
+                && genre == movie.genre
+                && language == movie.language
+                && Objects.equals(imagePath, movie.imagePath);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, duration, genre, language, imagePath);
     }
 
 }

@@ -20,80 +20,21 @@
     "receipts": [
       {
         "receiptNumber": 1,
-        "dateTime": "Jun 20, 2025, 10:18:37 PM",
-        "clientName": "a",
-        "clientDocument": "a",
+        "dateTime": "Jun 21, 2025, 3:50:40 PM",
+        "clientName": "cdsaf",
+        "clientDocument": "sdfsd",
         "items": [
           {
-            "productID": "C3",
+            "productID": "D2",
             "quantity": 1,
-            "description": "Ticket C3 - Standard",
+            "description": "Ticket D2 - Standard",
             "singlePrice": 8.0
-          }
-        ]
-      },
-      {
-        "receiptNumber": 1,
-        "dateTime": "Jun 20, 2025, 10:28:22 PM",
-        "clientName": "eeee",
-        "clientDocument": "1",
-        "items": [
+          },
           {
             "productID": "D3",
             "quantity": 1,
             "description": "Ticket D3 - Standard",
-            "singlePrice": 6.5
-          },
-          {
-            "productID": "E3",
-            "quantity": 1,
-            "description": "Ticket E3 - Standard",
-            "singlePrice": 6.5
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "userId": 0,
-    "username": "david",
-    "password": "davidpwd",
-    "email": "david@mail.pt",
-    "document": "12345678C",
-    "role": "USER",
-    "tickets": [],
-    "receipts": [
-      {
-        "receiptNumber": 1,
-        "dateTime": "Jun 20, 2025, 10:25:16 PM",
-        "clientName": "a",
-        "clientDocument": "a",
-        "items": [
-          {
-            "productID": "B2",
-            "quantity": 1,
-            "description": "Ticket B2 - Senior",
-            "singlePrice": 5.5
-          }
-        ]
-      },
-      {
-        "receiptNumber": 1,
-        "dateTime": "Jun 20, 2025, 10:27:12 PM",
-        "clientName": "qwsd",
-        "clientDocument": "1234",
-        "items": [
-          {
-            "productID": "C4",
-            "quantity": 1,
-            "description": "Ticket C4 - Standard",
-            "singlePrice": 6.5
-          },
-          {
-            "productID": "D4",
-            "quantity": 1,
-            "description": "Ticket D4 - Standard",
-            "singlePrice": 6.5
+            "singlePrice": 8.0
           }
         ]
       }

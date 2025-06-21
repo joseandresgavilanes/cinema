@@ -1,5 +1,7 @@
 package pt.ipleiria.estg.dei.ei.esoft.models;
 
+import java.util.Objects;
+
 public class Room {
     private int roomId;
     private String name;
@@ -50,6 +52,22 @@ public class Room {
     @Override
     public String toString() {
         return name + " - " + capacity + " seats";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Room)) return false;
+        Room room = (Room) o;
+        return Objects.equals(name, room.name)
+                && Objects.equals(capacity, room.capacity)
+                && Objects.equals(accessibility, room.accessibility)
+                && soundSystem == room.soundSystem;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, capacity, accessibility, soundSystem);
     }
 
 }

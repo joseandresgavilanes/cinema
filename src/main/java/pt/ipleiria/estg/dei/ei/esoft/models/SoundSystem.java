@@ -21,13 +21,4 @@ public enum SoundSystem {
     public String toString() {
         return displayName;
     }
-
-    public static SoundSystem fromString(String text) {
-        for (SoundSystem system : SoundSystem.values()) {
-            if (system.name().equalsIgnoreCase(text) || system.displayName.equalsIgnoreCase(text)) {
-                return system;
-            }
-        }
-        throw new IllegalArgumentException("Invalid sound system: " + text);
-    }
 }

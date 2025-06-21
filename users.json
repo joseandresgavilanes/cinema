@@ -128,6 +128,20 @@
             "singlePrice": 6.0
           }
         ]
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 21, 2025, 10:42:46 PM",
+        "clientName": "juan",
+        "clientDocument": "12345678B",
+        "items": [
+          {
+            "productID": "Popcorn",
+            "quantity": 1,
+            "description": "Popcorn",
+            "singlePrice": 2.5
+          }
+        ]
       }
     ]
   }

@@ -16,7 +16,225 @@
     "email": "juan@mail.com",
     "document": "12345678B",
     "role": "USER",
-    "tickets": [],
-    "receipts": []
+    "tickets": [
+      {
+        "clientName": "juan",
+        "clientDoc": "12345678B",
+        "paymentMethod": "Card",
+        "seat": "E4",
+        "ticketType": "VIP",
+        "session": {
+          "sessionId": 0,
+          "name": "Amelie – Room 2 (20:30)",
+          "movie": {
+            "movieId": 0,
+            "title": "Amelie",
+            "description": "French romantic comedy",
+            "duration": 122,
+            "genre": "COMEDY",
+            "language": "ENGLISH",
+            "imagePath": "/images/amelie_movie.png"
+          },
+          "room": {
+            "roomId": 0,
+            "name": "Room 2",
+            "capacity": 30,
+            "accessibility": false,
+            "soundSystem": "STEREO"
+          },
+          "schedule": "2025-05-20 20:30"
+        }
+      },
+      {
+        "clientName": "juan",
+        "clientDoc": "12345678B",
+        "paymentMethod": "Card",
+        "seat": "D6",
+        "ticketType": "STUDENT",
+        "session": {
+          "sessionId": 0,
+          "name": "Matrix – Room 1 (18:00)",
+          "movie": {
+            "movieId": 0,
+            "title": "Matrix",
+            "description": "Classic science fiction",
+            "duration": 136,
+            "genre": "SCI_FI",
+            "language": "ENGLISH",
+            "imagePath": "/images/matrix_movie.png"
+          },
+          "room": {
+            "roomId": 0,
+            "name": "Room 1",
+            "capacity": 50,
+            "accessibility": true,
+            "soundSystem": "DOLBY_ATMOS"
+          },
+          "schedule": "2025-05-20 18:00"
+        }
+      },
+      {
+        "clientName": "juan",
+        "clientDoc": "12345678B",
+        "paymentMethod": "Card",
+        "seat": "E7",
+        "ticketType": "VIP",
+        "session": {
+          "sessionId": 0,
+          "name": "Matrix – Room 1 (18:00)",
+          "movie": {
+            "movieId": 0,
+            "title": "Matrix",
+            "description": "Classic science fiction",
+            "duration": 136,
+            "genre": "SCI_FI",
+            "language": "ENGLISH",
+            "imagePath": "/images/matrix_movie.png"
+          },
+          "room": {
+            "roomId": 0,
+            "name": "Room 1",
+            "capacity": 50,
+            "accessibility": true,
+            "soundSystem": "DOLBY_ATMOS"
+          },
+          "schedule": "2025-05-20 18:00"
+        }
+      },
+      {
+        "clientName": "juan",
+        "clientDoc": "12345678B",
+        "paymentMethod": "Card",
+        "seat": "E7",
+        "ticketType": "VIP",
+        "session": {
+          "sessionId": 0,
+          "name": "Matrix – Room 1 (18:00)",
+          "movie": {
+            "movieId": 0,
+            "title": "Matrix",
+            "description": "Classic science fiction",
+            "duration": 136,
+            "genre": "SCI_FI",
+            "language": "ENGLISH",
+            "imagePath": "/images/matrix_movie.png"
+          },
+          "room": {
+            "roomId": 0,
+            "name": "Room 1",
+            "capacity": 50,
+            "accessibility": true,
+            "soundSystem": "DOLBY_ATMOS"
+          },
+          "schedule": "2025-05-20 18:00"
+        }
+      }
+    ],
+    "receipts": [
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 21, 2025, 10:42:37 PM",
+        "clientName": "juan",
+        "clientDocument": "12345678B",
+        "items": [
+          {
+            "productID": "E4",
+            "quantity": 1,
+            "description": "Ticket for seat E4 - Vip",
+            "singlePrice": 10.0
+          },
+          {
+            "productID": "Popcorn",
+            "quantity": 3,
+            "description": "Product: Popcorn",
+            "singlePrice": 2.5
+          },
+          {
+            "productID": "Nachos",
+            "quantity": 2,
+            "description": "Product: Nachos",
+            "singlePrice": 3.0
+          },
+          {
+            "productID": "Candy",
+            "quantity": 1,
+            "description": "Product: Candy",
+            "singlePrice": 1.25
+          }
+        ]
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 21, 2025, 10:50:54 PM",
+        "clientName": "juan",
+        "clientDocument": "12345678B",
+        "items": [
+          {
+            "productID": "D6",
+            "quantity": 1,
+            "description": "Ticket for seat D6 - Student",
+            "singlePrice": 4.5
+          },
+          {
+            "productID": "Popcorn",
+            "quantity": 2,
+            "description": "Product: Popcorn",
+            "singlePrice": 2.5
+          },
+          {
+            "productID": "Nachos",
+            "quantity": 2,
+            "description": "Product: Nachos",
+            "singlePrice": 3.0
+          }
+        ]
+      },
+      {
+        "receiptNumber": 2,
+        "dateTime": "Jun 21, 2025, 10:52:22 PM",
+        "clientName": "juan",
+        "clientDocument": "12345678B",
+        "items": [
+          {
+            "productID": "E7",
+            "quantity": 1,
+            "description": "Ticket for seat E7 - Vip",
+            "singlePrice": 10.0
+          },
+          {
+            "productID": "Popcorn",
+            "quantity": 1,
+            "description": "Product: Popcorn",
+            "singlePrice": 2.5
+          },
+          {
+            "productID": "Candy",
+            "quantity": 1,
+            "description": "Product: Candy",
+            "singlePrice": 1.25
+          }
+        ]
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 21, 2025, 10:53:30 PM",
+        "clientName": "juan",
+        "clientDocument": "12345678B",
+        "items": [
+          {
+            "productID": "E7",
+            "quantity": 1,
+            "description": "Ticket for seat E7 - Vip",
+            "singlePrice": 10.0
+          },
+          {
+            "productID": "Iced Tea",
+            "quantity": 1,
+            "description": "Product: Iced Tea",
+            "singlePrice": 2.0
+          }
+        ]
+      }
+    ]
   }
 ]

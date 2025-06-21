@@ -64,6 +64,23 @@ public class PaymentWindow extends JFrame {
 
         setContentPane(mainPanel);
     }
+    private double calculateDiscountedTicketTotal() {
+        double total = 0.0;
+
+        for (Map.Entry<TicketType, Integer> entry : selectedTickets.entrySet()) {
+            double base = entry.getKey().getBasePrice();
+            int qty = entry.getValue();
+            total += base * qty;
+        }
+
+        // Si hay productos y tickets => aplica 10% descuento
+        if (!selectedProducts.isEmpty() && !selectedTickets.isEmpty()) {
+            total *= 0.9;  // 10% descuento
+        }
+
+        return total;
+    }
+
 
     private void updateSummary() {
         StringBuilder sb = new StringBuilder();
@@ -76,15 +93,17 @@ public class PaymentWindow extends JFrame {
         }
 
         sb.append(" Selected Tickets:\n");
+        double ticketSubtotal = 0.0;
         for (Map.Entry<TicketType, Integer> entry : selectedTickets.entrySet()) {
             double subtotal = entry.getKey().getBasePrice() * entry.getValue();
             sb.append(String.format(" - %-8s x %d = %.2f €\n", entry.getKey(), entry.getValue(), subtotal));
-            total += subtotal;
+            ticketSubtotal += subtotal;
         }
 
         sb.append("\n Selected Seats:\n");
         selectedSeats.stream().sorted().forEach(seat -> sb.append(" - ").append(seat).append("\n"));
 
+        double productSubtotal = 0.0;
         if (!selectedProducts.isEmpty()) {
             sb.append("\n🛍 Products:\n");
             for (Map.Entry<Product, Integer> entry : selectedProducts.entrySet()) {
@@ -92,13 +111,21 @@ public class PaymentWindow extends JFrame {
                 int qty = entry.getValue();
                 double subtotal = p.getPrice() * qty;
                 sb.append(String.format(" - %s x %d = %.2f €\n", p.getName(), qty, subtotal));
-                total += subtotal;
+                productSubtotal += subtotal;
             }
         }
 
-        sb.append(String.format("\n💰 Total to pay: %.2f €\n", total));
+        boolean combo = !selectedProducts.isEmpty() && !selectedTickets.isEmpty();
+        if (combo) {
+            sb.append(String.format("\n🎁 Combo discount applied: -%.2f €", ticketSubtotal * 0.10));
+            ticketSubtotal *= 0.9; // apply discount
+        }
+
+        total = ticketSubtotal + productSubtotal;
+        sb.append(String.format("\n\n💰 Total to pay: %.2f €\n", total));
         summaryArea.setText(sb.toString());
     }
+
 
     private void handlePayment() {
         if (!SessionManager.isLoggedIn()) {

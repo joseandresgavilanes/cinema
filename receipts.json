@@ -122,5 +122,19 @@
         "singlePrice": 8.0
       }
     ]
+  },
+  {
+    "receiptNumber": 1,
+    "dateTime": "Jun 21, 2025, 5:04:20 PM",
+    "clientName": "asdf1234",
+    "clientDocument": "1234",
+    "items": [
+      {
+        "productID": "B2",
+        "quantity": 1,
+        "description": "Ticket B2 - Student",
+        "singlePrice": 6.5
+      }
+    ]
   }
 ]

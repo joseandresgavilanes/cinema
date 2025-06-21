@@ -26,8 +26,32 @@ public enum Genre {
         this.displayName = displayName;
     }
 
+    /**
+     * Returns the display name (for UI).
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
+
     @Override
     public String toString() {
         return displayName;
+    }
+
+    /**
+     * Parses a string into a Genre, ignoring case.
+     * Accepts either the enum name (e.g. "ACTION") or its display name (e.g. "Action").
+     *
+     * @param text the input text
+     * @return matching Genre
+     * @throws IllegalArgumentException if no genre matches
+     */
+    public static Genre fromString(String text) {
+        for (Genre g : Genre.values()) {
+            if (g.name().equalsIgnoreCase(text) || g.displayName.equalsIgnoreCase(text)) {
+                return g;
+            }
+        }
+        throw new IllegalArgumentException("Invalid genre: " + text);
     }
 }

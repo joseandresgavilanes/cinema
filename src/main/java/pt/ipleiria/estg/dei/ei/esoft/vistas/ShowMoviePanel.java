@@ -47,7 +47,7 @@ public class ShowMoviePanel extends JPanel {
         add(MoviePanel, BorderLayout.CENTER);
 
         BuyButton.addActionListener(e -> {
-            BuyTickets ventana = new BuyTickets(session);
+            SelectTickets ventana = new SelectTickets(session);
             ventana.setVisible(true);
         });
 

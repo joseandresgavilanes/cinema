@@ -1,0 +1,134 @@
+[
+  {
+    "userId": 0,
+    "username": "admin",
+    "password": "admin123",
+    "email": "admin@cine.com",
+    "document": "00000000A",
+    "role": "ADMIN",
+    "tickets": [],
+    "receipts": []
+  },
+  {
+    "userId": 0,
+    "username": "juan",
+    "password": "juanpwd",
+    "email": "juan@mail.com",
+    "document": "12345678B",
+    "role": "USER",
+    "tickets": [
+      {
+        "clientName": "juan",
+        "clientDoc": "12345678B",
+        "paymentMethod": "Tarjeta",
+        "seat": "B3",
+        "ticketType": "STANDARD",
+        "session": {
+          "sessionId": 0,
+          "name": "Matrix – Room 1 (18:00)",
+          "movie": {
+            "movieId": 0,
+            "title": "Matrix",
+            "description": "Classic science fiction",
+            "duration": 136,
+            "genre": "SCI_FI",
+            "language": "ENGLISH",
+            "imagePath": "/images/matrix_movie.png"
+          },
+          "room": {
+            "roomId": 0,
+            "name": "Room 1",
+            "capacity": 50,
+            "accessibility": true,
+            "soundSystem": "DOLBY_ATMOS"
+          },
+          "schedule": "2025-05-20 18:00"
+        }
+      },
+      {
+        "clientName": "juan",
+        "clientDoc": "12345678B",
+        "paymentMethod": "Tarjeta",
+        "seat": "B4",
+        "ticketType": "STANDARD",
+        "session": {
+          "sessionId": 0,
+          "name": "Matrix – Room 1 (18:00)",
+          "movie": {
+            "movieId": 0,
+            "title": "Matrix",
+            "description": "Classic science fiction",
+            "duration": 136,
+            "genre": "SCI_FI",
+            "language": "ENGLISH",
+            "imagePath": "/images/matrix_movie.png"
+          },
+          "room": {
+            "roomId": 0,
+            "name": "Room 1",
+            "capacity": 50,
+            "accessibility": true,
+            "soundSystem": "DOLBY_ATMOS"
+          },
+          "schedule": "2025-05-20 18:00"
+        }
+      },
+      {
+        "clientName": "juan",
+        "clientDoc": "12345678B",
+        "paymentMethod": "Tarjeta",
+        "seat": "C3",
+        "ticketType": "STANDARD",
+        "session": {
+          "sessionId": 0,
+          "name": "Matrix – Room 1 (18:00)",
+          "movie": {
+            "movieId": 0,
+            "title": "Matrix",
+            "description": "Classic science fiction",
+            "duration": 136,
+            "genre": "SCI_FI",
+            "language": "ENGLISH",
+            "imagePath": "/images/matrix_movie.png"
+          },
+          "room": {
+            "roomId": 0,
+            "name": "Room 1",
+            "capacity": 50,
+            "accessibility": true,
+            "soundSystem": "DOLBY_ATMOS"
+          },
+          "schedule": "2025-05-20 18:00"
+        }
+      }
+    ],
+    "receipts": [
+      {
+        "receiptNumber": 3,
+        "dateTime": "Jun 21, 2025, 9:53:08 PM",
+        "clientName": "juan",
+        "clientDocument": "12345678B",
+        "items": [
+          {
+            "productID": "B3",
+            "quantity": 1,
+            "description": "Ticket for seat B3 - Standard",
+            "singlePrice": 6.0
+          },
+          {
+            "productID": "B4",
+            "quantity": 1,
+            "description": "Ticket for seat B4 - Standard",
+            "singlePrice": 6.0
+          },
+          {
+            "productID": "C3",
+            "quantity": 1,
+            "description": "Ticket for seat C3 - Standard",
+            "singlePrice": 6.0
+          }
+        ]
+      }
+    ]
+  }
+]

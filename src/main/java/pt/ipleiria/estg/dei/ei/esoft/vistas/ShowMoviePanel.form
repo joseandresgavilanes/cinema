@@ -42,15 +42,6 @@
           <text value="Buy"/>
         </properties>
       </component>
-      <component id="e7c80" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
-        <constraints>
-          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <editable value="false"/>
-          <model/>
-        </properties>
-      </component>
       <component id="d1492" class="javax.swing.JLabel" binding="lblDescription">
         <constraints>
           <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -90,6 +81,14 @@
         </constraints>
         <properties>
           <text value="Horarios:"/>
+        </properties>
+      </component>
+      <component id="1d9d0" class="javax.swing.JLabel" binding="scheduleLabel">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Label"/>
         </properties>
       </component>
     </children>

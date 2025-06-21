@@ -145,5 +145,47 @@
       "soundSystem": "SURROUND"
     },
     "schedule": "2025-05-23 19:00"
+  },
+  {
+    "sessionId": 0,
+    "name": "Matrix - Room 1 (2034-12312)",
+    "movie": {
+      "movieId": 0,
+      "title": "Matrix",
+      "description": "Classic science fiction",
+      "duration": 136,
+      "genre": "SCI_FI",
+      "language": "ENGLISH",
+      "imagePath": "/images/matrix_movie.png"
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 1",
+      "capacity": 50,
+      "accessibility": true,
+      "soundSystem": "DOLBY_ATMOS"
+    },
+    "schedule": "2034-12312"
+  },
+  {
+    "sessionId": 0,
+    "name": "matirx - Room 3 (2023 - 203)",
+    "movie": {
+      "movieId": 0,
+      "title": "matirx",
+      "description": "Sinopsisasdasdads",
+      "duration": 123,
+      "genre": "COMEDY",
+      "language": "ENGLISH",
+      "imagePath": ""
+    },
+    "room": {
+      "roomId": 0,
+      "name": "Room 3",
+      "capacity": 20,
+      "accessibility": false,
+      "soundSystem": "DTS"
+    },
+    "schedule": "2023 - 203"
   }
 ]

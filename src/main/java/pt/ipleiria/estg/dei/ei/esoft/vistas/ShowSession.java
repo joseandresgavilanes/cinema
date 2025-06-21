@@ -75,6 +75,7 @@ public class ShowSession extends JFrame {
             ShowMoviePanel panel = new ShowMoviePanel(f);
             panel.setTitulo(f.getMovie().getTitle());
             panel.setDescripcion(f.getMovie().getDescription());
+            panel.setSchedule(f.getSchedule());
             panel.setPhoto(f.getMovie().getImagePath());
             panel.setBackground(new Color(30, 30, 30));
             panel.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));

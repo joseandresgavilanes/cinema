@@ -61,5 +61,14 @@
     "genre": "SCI_FI",
     "language": "ENGLISH",
     "imagePath": "/images/interstellar_movie.png"
+  },
+  {
+    "movieId": 0,
+    "title": "matirx",
+    "description": "Sinopsisasdasdads",
+    "duration": 123,
+    "genre": "COMEDY",
+    "language": "ENGLISH",
+    "imagePath": ""
   }
 ]

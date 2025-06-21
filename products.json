@@ -5,7 +5,8 @@
     "description": "Salted popcorn",
     "category": "Snack",
     "price": 2.5,
-    "imagePath": "/images/popcorn_product.png"
+    "imagePath": "/images/popcorn_product.png",
+    "quantity": 10
   },
   {
     "productId": 0,
@@ -13,7 +14,8 @@
     "description": "Carbonated soft drink",
     "category": "Drink",
     "price": 1.75,
-    "imagePath": "/images/soda_product.png"
+    "imagePath": "/images/soda_product.png",
+    "quantity": 10
   },
   {
     "productId": 0,
@@ -21,7 +23,8 @@
     "description": "Cheesy nachos",
     "category": "Food",
     "price": 3.0,
-    "imagePath": "/images/nachos_product.png"
+    "imagePath": "/images/nachos_product.png",
+    "quantity": 10
   },
   {
     "productId": 0,
@@ -29,7 +32,8 @@
     "description": "Classic hot dog with mustard",
     "category": "Food",
     "price": 3.5,
-    "imagePath": "/images/hotdog_product.png"
+    "imagePath": "/images/hotdog_product.png",
+    "quantity": 10
   },
   {
     "productId": 0,
@@ -37,7 +41,8 @@
     "description": "Refreshing lemon iced tea",
     "category": "Drink",
     "price": 2.0,
-    "imagePath": "/images/icetea_product.png"
+    "imagePath": "/images/icetea_product.png",
+    "quantity": 10
   },
   {
     "productId": 0,
@@ -45,6 +50,7 @@
     "description": "Assorted sweets",
     "category": "Snack",
     "price": 1.25,
-    "imagePath": "/images/candy_product.png"
+    "imagePath": "/images/candy_product.png",
+    "quantity": 10
   }
 ]

@@ -51,6 +51,34 @@
             "singlePrice": 6.5
           }
         ]
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 21, 2025, 4:55:14 PM",
+        "clientName": "agdhnasj",
+        "clientDocument": "1234567",
+        "items": [
+          {
+            "productID": "B2",
+            "quantity": 1,
+            "description": "Ticket B2 - Senior",
+            "singlePrice": 5.5
+          }
+        ]
+      },
+      {
+        "receiptNumber": 1,
+        "dateTime": "Jun 21, 2025, 4:55:59 PM",
+        "clientName": "asbdm",
+        "clientDocument": "123456789",
+        "items": [
+          {
+            "productID": "C3",
+            "quantity": 1,
+            "description": "Ticket C3 - Senior",
+            "singlePrice": 5.5
+          }
+        ]
       }
     ]
   },

@@ -1,99 +1,139 @@
 [
   {
     "receiptNumber": 1,
-    "dateTime": "Jun 21, 2025, 9:43:28 PM",
-    "clientName": "juan",
-    "clientDocument": "12345678B",
+    "dateTime": "Jun 20, 2025, 10:07:15 PM",
+    "clientName": "a",
+    "clientDocument": "a",
     "items": [
       {
-        "productID": "Popcorn",
+        "productID": "C4",
         "quantity": 1,
-        "description": "Popcorn",
-        "singlePrice": 2.5
+        "description": "Ticket C4 - Standard",
+        "singlePrice": 8.0
       }
     ]
   },
   {
-    "receiptNumber": 2,
-    "dateTime": "Jun 21, 2025, 9:43:32 PM",
-    "clientName": "juan",
-    "clientDocument": "12345678B",
+    "receiptNumber": 1,
+    "dateTime": "Jun 20, 2025, 10:18:37 PM",
+    "clientName": "a",
+    "clientDocument": "a",
     "items": [
       {
-        "productID": "Soda",
+        "productID": "C3",
         "quantity": 1,
-        "description": "Soda",
-        "singlePrice": 1.75
+        "description": "Ticket C3 - Standard",
+        "singlePrice": 8.0
       }
     ]
   },
   {
-    "receiptNumber": 3,
-    "dateTime": "Jun 21, 2025, 9:43:33 PM",
-    "clientName": "juan",
-    "clientDocument": "12345678B",
+    "receiptNumber": 1,
+    "dateTime": "Jun 20, 2025, 10:25:16 PM",
+    "clientName": "a",
+    "clientDocument": "a",
     "items": [
       {
-        "productID": "Nachos",
+        "productID": "B2",
         "quantity": 1,
-        "description": "Nachos",
-        "singlePrice": 3.0
+        "description": "Ticket B2 - Senior",
+        "singlePrice": 5.5
       }
     ]
   },
   {
-    "receiptNumber": 4,
-    "dateTime": "Jun 21, 2025, 9:46:01 PM",
-    "clientName": "juan",
-    "clientDocument": "12345678B",
+    "receiptNumber": 1,
+    "dateTime": "Jun 20, 2025, 10:27:12 PM",
+    "clientName": "qwsd",
+    "clientDocument": "1234",
     "items": [
       {
-        "productID": "Popcorn",
+        "productID": "C4",
         "quantity": 1,
-        "description": "Popcorn",
-        "singlePrice": 2.5
+        "description": "Ticket C4 - Standard",
+        "singlePrice": 6.5
+      },
+      {
+        "productID": "D4",
+        "quantity": 1,
+        "description": "Ticket D4 - Standard",
+        "singlePrice": 6.5
       }
     ]
   },
   {
-    "receiptNumber": 5,
-    "dateTime": "Jun 21, 2025, 9:47:10 PM",
-    "clientName": "juan",
-    "clientDocument": "12345678B",
+    "receiptNumber": 1,
+    "dateTime": "Jun 20, 2025, 10:28:22 PM",
+    "clientName": "eeee",
+    "clientDocument": "1",
     "items": [
       {
-        "productID": "Nachos",
+        "productID": "D3",
         "quantity": 1,
-        "description": "Nachos",
-        "singlePrice": 3.0
+        "description": "Ticket D3 - Standard",
+        "singlePrice": 6.5
+      },
+      {
+        "productID": "E3",
+        "quantity": 1,
+        "description": "Ticket E3 - Standard",
+        "singlePrice": 6.5
       }
     ]
   },
   {
-    "receiptNumber": 6,
-    "dateTime": "Jun 21, 2025, 9:47:12 PM",
-    "clientName": "juan",
-    "clientDocument": "12345678B",
+    "receiptNumber": 1,
+    "dateTime": "Jun 21, 2025, 4:55:14 PM",
+    "clientName": "agdhnasj",
+    "clientDocument": "1234567",
     "items": [
       {
-        "productID": "Soda",
+        "productID": "B2",
         "quantity": 1,
-        "description": "Soda",
-        "singlePrice": 1.75
+        "description": "Ticket B2 - Senior",
+        "singlePrice": 5.5
       }
     ]
   },
   {
-    "receiptNumber": 7,
-    "dateTime": "Jun 21, 2025, 9:47:14 PM",
-    "clientName": "juan",
-    "clientDocument": "12345678B",
+    "receiptNumber": 1,
+    "dateTime": "Jun 21, 2025, 4:55:59 PM",
+    "clientName": "asbdm",
+    "clientDocument": "123456789",
     "items": [
       {
-        "productID": "Iced Tea",
+        "productID": "C3",
         "quantity": 1,
-        "description": "Iced Tea",
-        "singlePrice": 2.0
+        "description": "Ticket C3 - Senior",
+        "singlePrice": 5.5
+      }
+    ]
+  },
+  {
+    "receiptNumber": 1,
+    "dateTime": "Jun 21, 2025, 5:00:07 PM",
+    "clientName": "asdfg",
+    "clientDocument": "1234567",
+    "items": [
+      {
+        "productID": "C5",
+        "quantity": 1,
+        "description": "Ticket C5 - Standard",
+        "singlePrice": 8.0
+      }
+    ]
+  },
+  {
+    "receiptNumber": 1,
+    "dateTime": "Jun 21, 2025, 5:04:20 PM",
+    "clientName": "asdf1234",
+    "clientDocument": "1234",
+    "items": [
+      {
+        "productID": "B2",
+        "quantity": 1,
+        "description": "Ticket B2 - Student",
+        "singlePrice": 6.5
       }
     ]
   }

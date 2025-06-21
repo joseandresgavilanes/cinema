@@ -1,1 +1,100 @@
-[]
+[
+  {
+    "receiptNumber": 1,
+    "dateTime": "Jun 21, 2025, 9:43:28 PM",
+    "clientName": "juan",
+    "clientDocument": "12345678B",
+    "items": [
+      {
+        "productID": "Popcorn",
+        "quantity": 1,
+        "description": "Popcorn",
+        "singlePrice": 2.5
+      }
+    ]
+  },
+  {
+    "receiptNumber": 2,
+    "dateTime": "Jun 21, 2025, 9:43:32 PM",
+    "clientName": "juan",
+    "clientDocument": "12345678B",
+    "items": [
+      {
+        "productID": "Soda",
+        "quantity": 1,
+        "description": "Soda",
+        "singlePrice": 1.75
+      }
+    ]
+  },
+  {
+    "receiptNumber": 3,
+    "dateTime": "Jun 21, 2025, 9:43:33 PM",
+    "clientName": "juan",
+    "clientDocument": "12345678B",
+    "items": [
+      {
+        "productID": "Nachos",
+        "quantity": 1,
+        "description": "Nachos",
+        "singlePrice": 3.0
+      }
+    ]
+  },
+  {
+    "receiptNumber": 4,
+    "dateTime": "Jun 21, 2025, 9:46:01 PM",
+    "clientName": "juan",
+    "clientDocument": "12345678B",
+    "items": [
+      {
+        "productID": "Popcorn",
+        "quantity": 1,
+        "description": "Popcorn",
+        "singlePrice": 2.5
+      }
+    ]
+  },
+  {
+    "receiptNumber": 5,
+    "dateTime": "Jun 21, 2025, 9:47:10 PM",
+    "clientName": "juan",
+    "clientDocument": "12345678B",
+    "items": [
+      {
+        "productID": "Nachos",
+        "quantity": 1,
+        "description": "Nachos",
+        "singlePrice": 3.0
+      }
+    ]
+  },
+  {
+    "receiptNumber": 6,
+    "dateTime": "Jun 21, 2025, 9:47:12 PM",
+    "clientName": "juan",
+    "clientDocument": "12345678B",
+    "items": [
+      {
+        "productID": "Soda",
+        "quantity": 1,
+        "description": "Soda",
+        "singlePrice": 1.75
+      }
+    ]
+  },
+  {
+    "receiptNumber": 7,
+    "dateTime": "Jun 21, 2025, 9:47:14 PM",
+    "clientName": "juan",
+    "clientDocument": "12345678B",
+    "items": [
+      {
+        "productID": "Iced Tea",
+        "quantity": 1,
+        "description": "Iced Tea",
+        "singlePrice": 2.0
+      }
+    ]
+  }
+]

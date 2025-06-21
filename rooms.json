@@ -26,5 +26,12 @@
     "capacity": 100,
     "accessibility": true,
     "soundSystem": "SURROUND"
+  },
+  {
+    "roomId": 0,
+    "name": "Name",
+    "capacity": 456,
+    "accessibility": false,
+    "soundSystem": "MONO"
   }
 ]

@@ -108,5 +108,19 @@
         "singlePrice": 5.5
       }
     ]
+  },
+  {
+    "receiptNumber": 1,
+    "dateTime": "Jun 21, 2025, 5:00:07 PM",
+    "clientName": "asdfg",
+    "clientDocument": "1234567",
+    "items": [
+      {
+        "productID": "C5",
+        "quantity": 1,
+        "description": "Ticket C5 - Standard",
+        "singlePrice": 8.0
+      }
+    ]
   }
 ]
